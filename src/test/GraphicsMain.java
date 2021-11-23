@@ -23,8 +23,8 @@ import java.awt.*;
 public class GraphicsMain {
 
     public static void main(String[] args){
-        EventQueue.invokeLater(() -> new GameFrame().initialize());
-//        EventQueue.invokeLater(GameFrame::new);
+//        EventQueue.invokeLater(() -> new GameFrame().initialize());
+        EventQueue.invokeLater(GameFrame::new);
     }
 
 }
