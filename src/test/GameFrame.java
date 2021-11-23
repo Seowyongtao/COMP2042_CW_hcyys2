@@ -19,10 +19,8 @@ package test;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 
 
 public class GameFrame extends JFrame implements WindowFocusListener {
@@ -30,7 +28,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private static final String DEF_TITLE = "Brick Destroy";
 
     private GameBoard gameBoard;
-    private HomeMenu homeMenu;
+    private OldHomeMenu oldHomeMenu;
 
     private boolean gaming;
 
@@ -43,9 +41,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         gameBoard = new GameBoard(this);
 
-        homeMenu = new HomeMenu(this,new Dimension(450,300));
+        oldHomeMenu = new OldHomeMenu(this,new Dimension(450,300));
 
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(oldHomeMenu,BorderLayout.CENTER);
 
         this.setUndecorated(true);
 
@@ -62,7 +60,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void enableGameBoard(){
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(oldHomeMenu);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
