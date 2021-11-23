@@ -27,46 +27,74 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private GameBoard gameBoard;
-    private OldHomeMenu oldHomeMenu;
-
     private boolean gaming;
 
-    public GameFrame(){
-        super();
+    private HomeMenu homeMenu;
+    private  StartButton startBtn;
+    private  ExitButton exitBtn;
+    private GameBoard gameBoard;
 
+    public GameFrame(){
+
+        this.initialize();
         gaming = false;
 
-        this.setLayout(new BorderLayout());
+        homeMenu = new HomeMenu();
+        this.add(homeMenu);
+
+        startBtn = new StartButton(this);
+        homeMenu.add(startBtn);
+
+        exitBtn = new ExitButton();
+        homeMenu.add(exitBtn);
 
         gameBoard = new GameBoard(this);
-
-        oldHomeMenu = new OldHomeMenu(this,new Dimension(450,300));
-
-        this.add(oldHomeMenu,BorderLayout.CENTER);
-
-        this.setUndecorated(true);
-
-
     }
+
+    //old code
+//    public void initialize(){
+//        this.setTitle(DEF_TITLE);
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.pack();
+//        this.autoLocate();
+//        this.setVisible(true);
+//    }
 
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.pack();
+        this.setSize(450, 300);
+        this.setUndecorated(true);
+        this.setResizable(false);
+        this.setLayout(null);
         this.autoLocate();
         this.setVisible(true);
     }
 
+    //old code
+//    public void enableGameBoard(){
+//        this.dispose();
+//        this.remove(oldHomeMenu);
+//        this.add(gameBoard,BorderLayout.CENTER);
+//        this.setUndecorated(false);
+//        initialize();
+//        /*to avoid problems with graphics focus controller is added here*/
+//        this.addWindowFocusListener(this);
+//    }
+
     public void enableGameBoard(){
         this.dispose();
-        this.remove(oldHomeMenu);
-        this.add(gameBoard,BorderLayout.CENTER);
+        this.remove(homeMenu);
+        this.setSize(600, 480);
         this.setUndecorated(false);
-        initialize();
+        this.setTitle(DEF_TITLE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.autoLocate();
+        this.setLayout(new BorderLayout());
+        this.add(gameBoard,BorderLayout.CENTER);
+        this.setVisible(true);
         /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
-
     }
 
     private void autoLocate(){
@@ -75,7 +103,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         int y = (size.height - this.getHeight()) / 2;
         this.setLocation(x,y);
     }
-
 
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
