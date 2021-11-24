@@ -57,16 +57,7 @@ public class Wall {
 
         rnd = new Random();
 
-        ball = new RubberBall(ballPos);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
-
-        ball.setSpeed(speedX,speedY);
+        ball = new RubberBall(ballPos, this.randomSpeedX(), this.randomSpeedY());
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
@@ -234,15 +225,7 @@ public class Wall {
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
-
-        ball.setSpeed(speedX,speedY);
+        ball.setSpeed(randomSpeedX(), randomSpeedY());
         ballLost = false;
     }
 
@@ -298,6 +281,29 @@ public class Wall {
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
         }
         return  out;
+    }
+
+    private int randomSpeedX(){
+
+        int speedX;
+
+        do{
+            speedX = rnd.nextInt(5) - 2;
+        }while(speedX == 0);
+
+        return speedX;
+    }
+
+    private int randomSpeedY(){
+
+        int speedY ;
+
+        do{
+            speedY = -rnd.nextInt(3);
+        }while(speedY == 0);
+
+        return speedY;
+
     }
 
 }
