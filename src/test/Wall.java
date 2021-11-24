@@ -57,7 +57,7 @@ public class Wall {
 
         rnd = new Random();
 
-        makeBall(ballPos);
+        ball = new RubberBall(ballPos);
         int speedX,speedY;
         do{
             speedX = rnd.nextInt(5) - 2;
@@ -158,10 +158,6 @@ public class Wall {
             tmp[i] = makeBrick(p,brickSize,typeA);
         }
         return tmp;
-    }
-
-    private void makeBall(Point2D ballPos){
-        ball = new RubberBall(ballPos);
     }
 
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
