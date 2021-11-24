@@ -173,11 +173,6 @@ public class Wall {
         return tmp;
     }
 
-    public void move(){
-        player.move();
-        ball.move();
-    }
-
     public void findImpacts(){
         if(player.impact(ball)){
             ball.reverseY();
