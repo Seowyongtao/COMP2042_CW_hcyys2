@@ -222,8 +222,11 @@ public class Wall {
         return ballLost;
     }
 
-    public void ballReset(){
+    public void playerReset(){
         player.moveTo(startPoint);
+    }
+
+    public void ballReset(){
         ball.moveTo(startPoint);
         ball.setSpeed(randomSpeedX(), randomSpeedY());
         ballLost = false;
