@@ -233,14 +233,6 @@ public class Wall {
         return level < levels.length;
     }
 
-    public void setBallXSpeed(int s){
-        ball.setXSpeed(s);
-    }
-
-    public void setBallYSpeed(int s){
-        ball.setYSpeed(s);
-    }
-
     public void resetBallCount(){
         ball.setCount(3);
     }

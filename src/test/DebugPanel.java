@@ -46,8 +46,8 @@ public class DebugPanel extends JPanel {
         skipLevel = makeButton("Skip Level",e -> wall.nextLevel());
         resetBalls = makeButton("Reset Balls",e -> wall.resetBallCount());
 
-        ballXSpeed = makeSlider(-4,4,e -> wall.setBallXSpeed(ballXSpeed.getValue()));
-        ballYSpeed = makeSlider(-4,4,e -> wall.setBallYSpeed(ballYSpeed.getValue()));
+        ballXSpeed = makeSlider(-4,4,e -> wall.ball.setXSpeed(ballXSpeed.getValue()));
+        ballYSpeed = makeSlider(-4,4,e -> wall.ball.setYSpeed(ballYSpeed.getValue()));
 
         this.add(skipLevel);
         this.add(resetBalls);
