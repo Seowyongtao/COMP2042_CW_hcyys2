@@ -226,10 +226,6 @@ public class Wall {
         ball.setCount(3);
     }
 
-    public boolean ballEnd(){
-        return ball.getCount() == 0;
-    }
-
     public boolean isDone(){
         return brickCount == 0;
     }

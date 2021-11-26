@@ -82,7 +82,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wall.findImpacts();
             message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.ball.getCount());
             if(wall.ball.getIsLost()){
-                if(wall.ballEnd()){
+                if(wall.ball.getCount() == 0){
                     wall.wallReset();
                     message = "Game over";
                 }
