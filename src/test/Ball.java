@@ -178,5 +178,9 @@ abstract public class Ball {
 
     }
 
+    public void resetBallCount(){
+        setCount(3);
+    }
+
 
 }

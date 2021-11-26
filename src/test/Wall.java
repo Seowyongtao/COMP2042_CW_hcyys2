@@ -233,9 +233,6 @@ public class Wall {
         return level < levels.length;
     }
 
-    public void resetBallCount(){
-        ball.setCount(3);
-    }
 
     private Brick makeBrick(Point point, Dimension size, int type){
         Brick out;
