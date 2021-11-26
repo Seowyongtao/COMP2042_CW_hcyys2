@@ -3,6 +3,7 @@ package test;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
+import java.util.Random;
 
 /**
  * Created by filippo on 04/09/16.
@@ -27,6 +28,7 @@ abstract public class Ball {
 
     private boolean isLost;
     private int count;
+    private Random rnd;
 
     public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
         this.center = center;
@@ -51,6 +53,7 @@ abstract public class Ball {
 
         isLost = false;
         count = 3;
+        rnd = new Random();
     }
 
     protected abstract Shape makeBall(Point2D center,int radiusA,int radiusB);
@@ -145,6 +148,35 @@ abstract public class Ball {
     public void setCount(int num){count = num; }
 
     public void count_decrement(){count--; }
+
+    public void reset(Point startingPoint){
+        moveTo(startingPoint);
+        setSpeed(randomSpeedX(), randomSpeedY());
+        setIsLost(false);
+    }
+
+    public int randomSpeedX(){
+
+        int speedX;
+
+        do{
+            speedX = rnd.nextInt(5) - 2;
+        }while(speedX == 0);
+
+        return speedX;
+    }
+
+    public int randomSpeedY(){
+
+        int speedY ;
+
+        do{
+            speedY = -rnd.nextInt(3);
+        }while(speedY == 0);
+
+        return speedY;
+
+    }
 
 
 }
