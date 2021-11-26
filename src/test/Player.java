@@ -83,4 +83,8 @@ public class Player {
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
+
+    public void reset(Point startingPoint){
+        moveTo(startingPoint);
+    }
 }

@@ -209,10 +209,6 @@ public class Wall {
         return brickCount;
     }
 
-    public void playerReset(){
-        player.moveTo(startPoint);
-    }
-
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
