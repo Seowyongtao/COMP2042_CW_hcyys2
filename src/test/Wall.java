@@ -42,7 +42,6 @@ public class Wall {
 
     private Point startPoint;
     private int brickCount;
-    private int ballCount;
 
     public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
@@ -50,8 +49,6 @@ public class Wall {
 
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
         level = 0;
-
-        ballCount = 3;
 
         rnd = new Random();
 
@@ -175,7 +172,7 @@ public class Wall {
             ball.reverseY();
         }
         else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
-            ballCount--;
+            ball.count_decrement();
             ball.setIsLost(true);
         }
     }
@@ -212,10 +209,6 @@ public class Wall {
         return brickCount;
     }
 
-    public int getBallCount(){
-        return ballCount;
-    }
-
     public void playerReset(){
         player.moveTo(startPoint);
     }
@@ -230,11 +223,11 @@ public class Wall {
         for(Brick b : bricks)
             b.repair();
         brickCount = bricks.length;
-        ballCount = 3;
+        ball.setCount(3);
     }
 
     public boolean ballEnd(){
-        return ballCount == 0;
+        return ball.getCount() == 0;
     }
 
     public boolean isDone(){
@@ -259,7 +252,7 @@ public class Wall {
     }
 
     public void resetBallCount(){
-        ballCount = 3;
+        ball.setCount(3);
     }
 
     private Brick makeBrick(Point point, Dimension size, int type){

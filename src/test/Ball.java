@@ -26,6 +26,7 @@ abstract public class Ball {
     private int speedY;
 
     private boolean isLost;
+    private int count;
 
     public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
         this.center = center;
@@ -49,6 +50,7 @@ abstract public class Ball {
         speedY = 0;
 
         isLost = false;
+        count = 3;
     }
 
     protected abstract Shape makeBall(Point2D center,int radiusA,int radiusB);
@@ -137,6 +139,12 @@ abstract public class Ball {
     public void setIsLost(boolean lostStatus){
         isLost = lostStatus;
     }
+
+    public int getCount(){return count; }
+
+    public void setCount(int num){count = num; }
+
+    public void count_decrement(){count--; }
 
 
 }
