@@ -25,6 +25,8 @@ abstract public class Ball {
     private int speedX;
     private int speedY;
 
+    private boolean isLost;
+
     public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
         this.center = center;
 
@@ -45,6 +47,8 @@ abstract public class Ball {
         this.inner  = inner;
         speedX = 0;
         speedY = 0;
+
+        isLost = false;
     }
 
     protected abstract Shape makeBall(Point2D center,int radiusA,int radiusB);
@@ -124,6 +128,14 @@ abstract public class Ball {
 
     public int getSpeedY(){
         return speedY;
+    }
+
+    public boolean getIsLost(){
+        return isLost;
+    }
+
+    public void setIsLost(boolean lostStatus){
+        isLost = lostStatus;
     }
 
 

@@ -43,7 +43,6 @@ public class Wall {
     private Point startPoint;
     private int brickCount;
     private int ballCount;
-    private boolean ballLost;
 
     public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
@@ -53,7 +52,6 @@ public class Wall {
         level = 0;
 
         ballCount = 3;
-        ballLost = false;
 
         rnd = new Random();
 
@@ -178,7 +176,7 @@ public class Wall {
         }
         else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
             ballCount--;
-            ballLost = true;
+            ball.setIsLost(true);
         }
     }
 
@@ -218,10 +216,6 @@ public class Wall {
         return ballCount;
     }
 
-    public boolean isBallLost(){
-        return ballLost;
-    }
-
     public void playerReset(){
         player.moveTo(startPoint);
     }
@@ -229,7 +223,7 @@ public class Wall {
     public void ballReset(){
         ball.moveTo(startPoint);
         ball.setSpeed(randomSpeedX(), randomSpeedY());
-        ballLost = false;
+        ball.setIsLost(false);
     }
 
     public void wallReset(){
