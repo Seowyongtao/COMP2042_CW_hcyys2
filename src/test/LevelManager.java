@@ -137,7 +137,7 @@ public class LevelManager {
 
     public void nextLevel(){
         wall.bricks = levels[level++];
-        wall.setBrickCount(wall.bricks.length);
+        wall.brickCount.setBrickCount(wall.bricks.length);
     }
 
     public boolean hasLevel(){

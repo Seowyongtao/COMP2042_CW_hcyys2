@@ -32,9 +32,9 @@ public class Wall {
     Player player;
     ImpactManager impactManager;
     LevelManager levelManager;
+    BrickCount brickCount;
 
     private Point startPoint;
-    private int brickCount;
 
     public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
@@ -52,29 +52,15 @@ public class Wall {
 
         levelManager = new LevelManager(this,area, brickCount, lineCount, brickDimensionRatio);
 
-    }
+        this.brickCount = new BrickCount(brickCount);
 
-    public int getBrickCount(){
-        return brickCount;
     }
 
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
-        brickCount = bricks.length;
+        brickCount.setBrickCount(bricks.length);
         ball.setCount(3);
-    }
-
-    public boolean isDone(){
-        return brickCount == 0;
-    }
-
-    public void brickCountDecrement(){
-        brickCount--;
-    }
-
-    public void setBrickCount(int num){
-        brickCount = num;
     }
 
 }

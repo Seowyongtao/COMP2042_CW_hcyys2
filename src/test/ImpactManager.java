@@ -23,7 +23,7 @@ public class ImpactManager {
             /*for efficiency reverse is done into method impactWall
              * because for every brick program checks for horizontal and vertical impacts
              */
-            wall.brickCountDecrement();
+            wall.brickCount.brickCountDecrement();
         }
         else if(impactBorder()) {
             wall.ball.reverseX();

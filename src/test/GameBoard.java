@@ -63,8 +63,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         strLen = 0;
         showPauseMenu = false;
 
-
-
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 
 
@@ -80,7 +78,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wall.player.move();
             wall.ball.move();
             wall.impactManager.findImpacts();
-            message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.ball.getCount());
+            message = String.format("Bricks: %d Balls %d",wall.brickCount.getBrickCount(),wall.ball.getCount());
             if(wall.ball.getIsLost()){
                 if(wall.ball.getCount() == 0){
                     wall.wallReset();
@@ -90,7 +88,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 wall.ball.reset(new Point(300,430));
                 gameTimer.stop();
             }
-            else if(wall.isDone()){
+            else if(wall.brickCount.getBrickCount() == 0){
                 if(wall.levelManager.hasLevel()){
                     message = "Go to Next Level";
                     gameTimer.stop();
