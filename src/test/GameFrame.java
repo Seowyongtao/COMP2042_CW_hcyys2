@@ -71,17 +71,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
-    //old code
-//    public void enableGameBoard(){
-//        this.dispose();
-//        this.remove(oldHomeMenu);
-//        this.add(gameBoard,BorderLayout.CENTER);
-//        this.setUndecorated(false);
-//        initialize();
-//        /*to avoid problems with graphics focus controller is added here*/
-//        this.addWindowFocusListener(this);
-//    }
-
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenu);
