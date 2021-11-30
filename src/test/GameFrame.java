@@ -29,24 +29,18 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
-    private HomeMenu homeMenu;
-    private  StartButton startBtn;
-    private  ExitButton exitBtn;
     private GameBoard gameBoard;
+    private HomeMenuView homeMenuView;
 
     public GameFrame(){
 
         this.initialize();
         gaming = false;
 
-        homeMenu = new HomeMenu();
-        this.add(homeMenu);
-
-        startBtn = new StartButton(this);
-        homeMenu.add(startBtn);
-
-        exitBtn = new ExitButton();
-        homeMenu.add(exitBtn);
+        homeMenuView = new HomeMenuView();
+        HomeMenuController homeMenuController = new HomeMenuController(homeMenuView, this);
+        this.add(homeMenuView);
+        this.setVisible(true);
 
         gameBoard = new GameBoard(this);
     }
@@ -73,7 +67,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void enableGameBoard(){
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(homeMenuView);
         this.setSize(600, 480);
         this.setUndecorated(false);
         this.setTitle(DEF_TITLE);
