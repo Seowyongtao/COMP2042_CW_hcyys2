@@ -52,9 +52,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private Rectangle continueButtonRect;
     private Rectangle exitButtonRect;
     private Rectangle restartButtonRect;
+
     private int strLen;
 
-    private DebugConsole debugConsole;
+    private DebugConsoleView debugConsoleView;
+    private DebugConsoleController debugConsoleController;
 
 
     public GameBoard(JFrame owner){
@@ -70,7 +72,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         message = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
 
-        debugConsole = new DebugConsole(owner,wall,this);
+        debugConsoleView = new DebugConsoleView();
+        debugConsoleController = new DebugConsoleController(debugConsoleView, owner, wall, this);
+
         //initialize the first level
         wall.levelManager.nextLevel();
 
@@ -292,7 +296,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 break;
             case KeyEvent.VK_F1:
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
-                    debugConsole.setVisible(true);
+                    debugConsoleView.setVisible(true);
             default:
                 wall.player.stop();
         }
