@@ -108,8 +108,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
-
-
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -118,7 +116,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
-
 
     public void paint(Graphics g){
 
@@ -258,10 +255,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.drawString(EXIT,x,y);
 
-
-
         g2d.setFont(tmpFont);
         g2d.setColor(tmpColor);
+    }
+
+    public void onLostFocus(){
+        gameTimer.stop();
+        message = "Focus Lost";
+        repaint();
     }
 
     @Override
@@ -362,12 +363,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         else{
             this.setCursor(Cursor.getDefaultCursor());
         }
-    }
-
-    public void onLostFocus(){
-        gameTimer.stop();
-        message = "Focus Lost";
-        repaint();
     }
 
 }
