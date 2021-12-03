@@ -5,10 +5,10 @@ import java.awt.geom.Point2D;
 
 public class ImpactManager {
 
-    private Wall wall;
+    private WallView wall;
     private Rectangle area;
 
-    public ImpactManager(Wall wall, Rectangle area){
+    public ImpactManager(WallView wall, Rectangle area){
 
         this.wall = wall;
         this.area = area;

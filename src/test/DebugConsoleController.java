@@ -11,15 +11,17 @@ import java.awt.event.WindowListener;
 public class DebugConsoleController {
 
     private DebugConsoleView theView;
-    private Wall wall;
+    private WallView wallView;
+    private WallController wallController;
     private GameBoard gameBoard;
     private JFrame gameFrame;
 
-    public DebugConsoleController(DebugConsoleView theView, JFrame gameFrame, Wall wall, GameBoard gameBoard){
+    public DebugConsoleController(DebugConsoleView theView, JFrame gameFrame, WallView wallView,WallController wallController, GameBoard gameBoard){
 
         this.theView = theView;
         this.gameFrame = gameFrame;
-        this.wall = wall;
+        this.wallView = wallView;
+        this.wallController = wallController;
         this.gameBoard = gameBoard;
 
         this.theView.addDebugConsoleWindowListener(new DebugConsoleWindowListener());
@@ -34,7 +36,7 @@ public class DebugConsoleController {
 
         public void actionPerformed(ActionEvent e) {
             System.out.println("Skip Level");
-            wall.levelManager.nextLevel();
+            wallController.levelManager.nextLevel();
         }
 
     }
@@ -43,7 +45,7 @@ public class DebugConsoleController {
 
         public void actionPerformed(ActionEvent e) {
             System.out.println("Reset Ball Count");
-            wall.ball.resetBallCount();
+            wallView.ball.resetBallCount();
         }
 
     }
@@ -52,7 +54,7 @@ public class DebugConsoleController {
 
         @Override
         public void stateChanged(ChangeEvent e) {
-            wall.ball.setXSpeed(theView.getBallXSpeed().getValue());
+            wallView.ball.setXSpeed(theView.getBallXSpeed().getValue());
         }
     }
 
@@ -60,7 +62,7 @@ public class DebugConsoleController {
 
         @Override
         public void stateChanged(ChangeEvent e) {
-            wall.ball.setYSpeed(theView.getBallYSpeed().getValue());
+            wallView.ball.setYSpeed(theView.getBallYSpeed().getValue());
         }
     }
 
@@ -101,7 +103,7 @@ public class DebugConsoleController {
             int y = ((gameFrame.getHeight() - theView.getHeight()) / 2) + gameFrame.getY();
             theView.setLocation(x,y);
 
-            Ball b = wall.ball;
+            Ball b = wallView.ball;
             theView.setValues(b.getSpeedX(),b.getSpeedY());
         }
 

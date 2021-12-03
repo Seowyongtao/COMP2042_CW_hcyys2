@@ -17,26 +17,32 @@
  */
 package test;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowListener;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
 
-public class Wall {
+public class WallView{
 
     private Random rnd;
-    private Rectangle area;
+    private Point startPoint;
 
+    Rectangle area;
     Brick[] bricks;
     Ball ball;
     Player player;
     ImpactManager impactManager;
     LevelManager levelManager;
     BrickCount brickCount;
+    String message;
 
-    private Point startPoint;
+    public WallView(Rectangle drawArea, Point ballPos){
 
-    public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
+        message ="";
 
         this.startPoint = new Point(ballPos);
 
@@ -48,19 +54,9 @@ public class Wall {
 
         area = drawArea;
 
-//        impactManager = new ImpactManager(this, area);
-//
-//        levelManager = new LevelManager(this,area, brickCount, lineCount, brickDimensionRatio);
-
-        this.brickCount = new BrickCount(brickCount);
+        this.brickCount = new BrickCount(30);
 
     }
 
-    public void wallReset(){
-        for(Brick b : bricks)
-            b.repair();
-        brickCount.setBrickCount(bricks.length);
-        ball.setCount(3);
-    }
 
 }
