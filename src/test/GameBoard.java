@@ -22,8 +22,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
-
-
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";
@@ -32,7 +30,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final String PAUSE = "Pause Menu";
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
-
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
@@ -66,7 +63,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         showPauseMenu = false;
 
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
-
 
         this.initialize();
         message = "";
@@ -160,7 +156,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(brick.getBorderColor());
         g2d.draw(brick.getBrick());
 
-
         g2d.setColor(tmp);
     }
 
@@ -215,7 +210,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
 
-
         g2d.setFont(menuFont);
         g2d.setColor(MENU_COLOR);
 
@@ -231,7 +225,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         x = this.getWidth() / 8;
         y = this.getHeight() / 4;
-
 
         if(continueButtonRect == null){
             FontRenderContext frc = g2d.getFontRenderContext();
