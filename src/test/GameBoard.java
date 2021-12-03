@@ -39,8 +39,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private static final Color BG_COLOR = Color.WHITE;
 
-    private Timer gameTimer;
-
     private Wall wall;
 
     private String message;
@@ -57,6 +55,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsoleView debugConsoleView;
     private DebugConsoleController debugConsoleController;
+    public  Timer gameTimer;
 
 
     public GameBoard(JFrame owner){

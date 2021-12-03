@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class LevelManager {
 
-    private Wall wall;
+    private WallView wall;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
@@ -15,7 +15,7 @@ public class LevelManager {
     private Brick[][] levels;
     private int level;
 
-    public LevelManager(Wall wall, Rectangle area, int brickCount, int lineCount, double brickDimensionRatio){
+    public LevelManager(WallView wall, Rectangle area, int brickCount, int lineCount, double brickDimensionRatio){
 
         this.wall = wall;
 

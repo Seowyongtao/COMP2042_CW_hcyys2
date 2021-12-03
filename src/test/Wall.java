@@ -48,9 +48,9 @@ public class Wall {
 
         area = drawArea;
 
-        impactManager = new ImpactManager(this, area);
-
-        levelManager = new LevelManager(this,area, brickCount, lineCount, brickDimensionRatio);
+//        impactManager = new ImpactManager(this, area);
+//
+//        levelManager = new LevelManager(this,area, brickCount, lineCount, brickDimensionRatio);
 
         this.brickCount = new BrickCount(brickCount);
 
