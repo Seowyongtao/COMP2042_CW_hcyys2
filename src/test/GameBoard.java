@@ -34,7 +34,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
-    private static final Color BG_COLOR = Color.WHITE;
+    private static Color bgColor = Color.WHITE; //new
 
     private boolean showPauseMenu;
 
@@ -48,9 +48,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsoleView debugConsoleView;
     private DebugConsoleController debugConsoleController;
-    public  Timer gameTimer;
     private WallView wallView;
     private WallController wallController;
+    public  Timer gameTimer;
 
 
     public GameBoard(JFrame owner){
@@ -86,7 +86,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         clear(g2d);
 
-        g2d.setColor(Color.BLUE);
+        g2d.setColor(wallView.messageColor);
         g2d.drawString(wallView.message,250,225);
 
         drawBall(wallView.ball,g2d);
@@ -105,7 +105,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
-        g2d.setColor(BG_COLOR);
+        g2d.setColor(bgColor);
         g2d.fillRect(0,0,getWidth(),getHeight());
         g2d.setColor(tmp);
     }
@@ -140,10 +140,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
-        g2d.setColor(Player.INNER_COLOR);
+        g2d.setColor(p.getInnerColor());
         g2d.fill(s);
 
-        g2d.setColor(Player.BORDER_COLOR);
+        g2d.setColor(p.getBorderColor());
         g2d.draw(s);
 
         g2d.setColor(tmp);
@@ -217,6 +217,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.setFont(tmpFont);
         g2d.setColor(tmpColor);
+    }
+
+    public void setBgColor (Color color){
+        bgColor = color;
     }
 
     public void onLostFocus(){
@@ -326,3 +330,4 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
 }
+

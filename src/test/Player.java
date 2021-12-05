@@ -24,9 +24,8 @@ import java.awt.geom.Rectangle2D;
 
 public class Player {
 
-
-    public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
-    public static final Color INNER_COLOR = Color.GREEN;
+    private Color borderColor = Color.GREEN.darker().darker();
+    private Color innerColor = Color.GREEN;
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
@@ -86,5 +85,21 @@ public class Player {
 
     public void reset(Point startingPoint){
         moveTo(startingPoint);
+    }
+
+    public Color getInnerColor(){
+        return innerColor;
+    }
+
+    public Color getBorderColor(){
+        return borderColor;
+    }
+
+    public void setInnerColor(Color color){
+        innerColor = color;
+    }
+
+    public void setBorderColor(Color color){
+        borderColor = color;
     }
 }

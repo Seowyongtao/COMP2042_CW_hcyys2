@@ -100,6 +100,14 @@ abstract public class Ball {
         return inner;
     }
 
+    public void setInnerColor(Color color){
+        inner = color;
+    }
+
+    public void setBorderColor(Color color){
+        border = color;
+    }
+
     public Point2D getPosition(){
         return center;
     }

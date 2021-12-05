@@ -37,10 +37,12 @@ public class WallView{
     Player player;
     BrickCount brickCount;
     String message;
+    Color messageColor;
 
     public WallView(Rectangle drawArea, Point ballPos){
 
         message ="";
+        messageColor = Color.BLUE;
 
         this.startPoint = new Point(ballPos);
 
