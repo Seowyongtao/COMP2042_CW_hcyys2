@@ -15,6 +15,10 @@ public class DebugConsoleView extends JDialog implements WindowListener {
     private JSlider ballXSpeed;
     private JSlider ballYSpeed;
 
+    private JRadioButton nightModeOn;
+    private JRadioButton nightModeOff;
+    private ButtonGroup nightMode;
+
 
     public DebugConsoleView(){
 
@@ -23,7 +27,7 @@ public class DebugConsoleView extends JDialog implements WindowListener {
         JPanel debugConsolePanel = new JPanel();
 
         debugConsolePanel.setBackground(Color.WHITE);
-        debugConsolePanel.setLayout(new GridLayout(2,2));
+        debugConsolePanel.setLayout(new GridLayout(3,2));
 
         skipLevel = makeButton("Skip Level");
         resetBalls = makeButton("Reset Balls");
@@ -31,11 +35,21 @@ public class DebugConsoleView extends JDialog implements WindowListener {
         ballXSpeed = makeSlider(-4,4);
         ballYSpeed = makeSlider(-4,4);
 
+        nightModeOn = makeRadioButton("NIGHT MODE ON");
+        nightModeOff = makeRadioButton("NIGHT MODE OFF");
+
+        nightMode = makeButtonGroup();
+        nightMode.add(nightModeOn);
+        nightMode.add(nightModeOff);
+
         debugConsolePanel.add(skipLevel);
         debugConsolePanel.add(resetBalls);
 
         debugConsolePanel.add(ballXSpeed);
         debugConsolePanel.add(ballYSpeed);
+
+        debugConsolePanel.add(nightModeOn);
+        debugConsolePanel.add(nightModeOff);
 
         this.add(debugConsolePanel,BorderLayout.CENTER);
         this.pack();
@@ -63,6 +77,16 @@ public class DebugConsoleView extends JDialog implements WindowListener {
         return out;
     }
 
+    private JRadioButton makeRadioButton(String title){
+        JRadioButton out = new JRadioButton(title);
+        return out;
+    }
+
+    private ButtonGroup makeButtonGroup(){
+        ButtonGroup out = new ButtonGroup();
+        return out;
+    }
+
     public JSlider getBallXSpeed(){
         return ballXSpeed;
     }
@@ -87,6 +111,20 @@ public class DebugConsoleView extends JDialog implements WindowListener {
 
         resetBalls.addActionListener(listenForResetBallsButton);
 
+    }
+
+    public JRadioButton getNightModeOn(){
+        return  nightModeOn;
+    }
+
+    public JRadioButton getNightModeOff(){
+        return  nightModeOff;
+    }
+
+    void addNightModeListener(ActionListener listenForNightModeRadioButtons){
+
+        nightModeOn.addActionListener(listenForNightModeRadioButtons);
+        nightModeOff.addActionListener(listenForNightModeRadioButtons);
     }
 
     void addBallXSpeedListener(ChangeListener listenForBallXSpeedSlider){
