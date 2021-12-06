@@ -35,9 +35,12 @@ public class WallView{
     Brick[] bricks;
     Ball ball;
     Player player;
+    ImpactManager impactManager;
+    LevelManager levelManager;
     BrickCount brickCount;
     String message;
     Color messageColor;
+    Score score;
 
     public WallView(Rectangle drawArea, Point ballPos){
 
@@ -55,6 +58,8 @@ public class WallView{
         area = drawArea;
 
         this.brickCount = new BrickCount(30);
+
+        score = new Score();
 
     }
 

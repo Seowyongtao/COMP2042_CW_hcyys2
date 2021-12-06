@@ -23,6 +23,7 @@ public class ImpactManager {
             /*for efficiency reverse is done into method impactWall
              * because for every brick program checks for horizontal and vertical impacts
              */
+            wall.score.scoreIncrement(10);
             wall.brickCount.brickCountDecrement();
         }
         else if(impactBorder()) {
@@ -34,7 +35,7 @@ public class ImpactManager {
         else if(wall.ball.getPosition().getY() > area.getY() + area.getHeight()){
 
             wall.ball.count_decrement();
-
+            wall.score.scoreDecrement(10);
             wall.ball.setIsLost(true);
         }
     }

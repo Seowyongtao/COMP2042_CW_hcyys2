@@ -27,7 +27,7 @@ public class WallController{
             wallView.player.move();
             wallView.ball.move();
             impactManager.findImpacts();
-            wallView.message = String.format("Bricks: %d Balls %d",wallView.brickCount.getBrickCount(),wallView.ball.getCount());
+            wallView.message = String.format("Bricks: %d Balls: %d Score: %d",wallView.brickCount.getBrickCount(),wallView.ball.getCount(), wallView.score.getScore());
             if(wallView.ball.getIsLost()){
                 if(wallView.ball.getCount() == 0){
                     wallReset();
@@ -38,6 +38,11 @@ public class WallController{
                 gameBoard.gameTimer.stop();
             }
             else if(wallView.brickCount.getBrickCount() == 0){
+
+                if(wallView.ball.getCount() == 3){
+                    wallView.score.scoreIncrement(30);
+                }
+
                 if(levelManager.hasLevel()){
                     wallView.message = "Go to Next Level";
                     gameBoard.gameTimer.stop();
