@@ -35,8 +35,6 @@ public class WallView{
     Brick[] bricks;
     Ball ball;
     Player player;
-    ImpactManager impactManager;
-    LevelManager levelManager;
     BrickCount brickCount;
     String message;
     Color messageColor;
