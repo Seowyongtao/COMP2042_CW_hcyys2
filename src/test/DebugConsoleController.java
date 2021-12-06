@@ -72,6 +72,10 @@ public class DebugConsoleController {
                 wallView.player.setInnerColor(new Color(144, 238, 144));
                 wallView.player.setBorderColor(new Color(144, 238, 144));
                 wallView.messageColor = Color.CYAN;
+                wallView.block1.setInnerColor(Color.pink);
+                wallView.block1.setBorderColor(Color.pink);
+                wallView.block2.setInnerColor(Color.pink);
+                wallView.block2.setBorderColor(Color.pink);
             }
             else if(e.getSource()==NightModeOff){
                 gameBoard.setBgColor(Color.WHITE);
@@ -80,6 +84,10 @@ public class DebugConsoleController {
                 wallView.player.setInnerColor(Color.GREEN);
                 wallView.player.setBorderColor(Color.GREEN.darker().darker());
                 wallView.messageColor = Color.BLUE;
+                wallView.block1.setInnerColor(Color.red);
+                wallView.block1.setBorderColor(Color.red.darker().darker());
+                wallView.block2.setInnerColor(Color.red);
+                wallView.block2.setBorderColor(Color.red.darker().darker());
             }
         }
     }
@@ -148,3 +156,4 @@ public class DebugConsoleController {
 
     }
 }
+

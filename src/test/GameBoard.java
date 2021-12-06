@@ -96,6 +96,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 drawBrick(b,g2d);
 
         drawPlayer(wallView.player,g2d);
+        drawBlock(wallView.block1, wallView.block2, g2d);
 
         if(showPauseMenu)
             drawMenu(g2d);
@@ -145,6 +146,26 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.setColor(p.getBorderColor());
         g2d.draw(s);
+
+        g2d.setColor(tmp);
+    }
+
+    private void drawBlock(Block b1, Block b2, Graphics2D g2d){
+        Color tmp = g2d.getColor();
+
+        Shape s1 = b1.getBlockFace();
+        g2d.setColor(b1.getInnerColor());
+        g2d.fill(s1);
+
+        g2d.setColor(b1.getBorderColor());
+        g2d.draw(s1);
+
+        Shape s2 = b2.getBlockFace();
+        g2d.setColor(b2.getInnerColor());
+        g2d.fill(s2);
+
+        g2d.setColor(b2.getBorderColor());
+        g2d.draw(s2);
 
         g2d.setColor(tmp);
     }
@@ -280,6 +301,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wallView.message = "Restarting Game...";
             wallView.player.reset(new Point(300,430));
             wallView.ball.reset(new Point(300,430));
+
+            if(wallController.levelManager.getLevel()==5 || wallController.levelManager.getLevel()==6){
+                wallView.ball.setXSpeed(4);
+                wallView.ball.setYSpeed(-4);
+            }
+
             wallView.score.reset();
             wallController.wallReset();
             showPauseMenu = false;

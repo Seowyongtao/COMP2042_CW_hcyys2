@@ -8,6 +8,7 @@ public class WallController{
     private LevelManager levelManeger;
     private WallView wallView;
     private GameBoard gameBoard;
+    private DebugConsoleView debugConsoleView;
     private ImpactManager impactManager;
     LevelManager levelManager;
 
@@ -24,6 +25,11 @@ public class WallController{
 
 
         gameBoard.gameTimer = new Timer(10, e ->{
+
+            if(levelManager.getLevel() == 6){
+                wallView.block1.move();
+                wallView.block2.move();
+            }
             wallView.player.move();
             wallView.ball.move();
             impactManager.findImpacts();
@@ -35,20 +41,34 @@ public class WallController{
                 }
                 wallView.player.reset(new Point(300,430));
                 wallView.ball.reset(new Point(300,430));
+
+                if(levelManager.getLevel()==5 || levelManager.getLevel()==6){
+                    wallView.ball.setXSpeed(4);
+                    wallView.ball.setYSpeed(-4);
+                }
+
                 gameBoard.gameTimer.stop();
             }
             else if(wallView.brickCount.getBrickCount() == 0){
 
+
                 if(wallView.ball.getCount() == 3){
                     wallView.score.scoreIncrement(30);
                 }
+
 
                 if(levelManager.hasLevel()){
                     wallView.message = "Go to Next Level";
                     gameBoard.gameTimer.stop();
                     wallView.player.reset(new Point(300,430));
                     wallView.ball.reset(new Point(300,430));
-                    wallReset(); //new
+
+                    if(levelManager.getLevel()==5 || levelManager.getLevel()==6){
+                        wallView.ball.setXSpeed(4);
+                        wallView.ball.setYSpeed(-4);
+                    }
+
+                    wallReset();
                     levelManager.nextLevel();
                 }
                 else{
@@ -67,6 +87,7 @@ public class WallController{
             b.repair();
         wallView.brickCount.setBrickCount(wallView.bricks.length);
         wallView.ball.setCount(3);
+
     }
 
 }

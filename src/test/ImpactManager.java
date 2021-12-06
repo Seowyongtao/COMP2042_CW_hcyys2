@@ -38,6 +38,12 @@ public class ImpactManager {
             wall.score.scoreDecrement(10);
             wall.ball.setIsLost(true);
         }
+        else if(wall.block1.impact(wall.ball)){
+            wall.ball.reverseY();
+        }
+        else if(wall.block2.impact(wall.ball)){
+            wall.ball.reverseY();
+        }
     }
 
     private boolean impactWall(){

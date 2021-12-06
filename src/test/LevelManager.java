@@ -10,7 +10,7 @@ public class LevelManager {
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
 
-    private static final int LEVELS_COUNT = 4;
+    private static final int LEVELS_COUNT = 6;
 
     private Brick[][] levels;
     private int level;
@@ -132,16 +132,30 @@ public class LevelManager {
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[5] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
         return tmp;
     }
 
     public void nextLevel(){
         wall.bricks = levels[level++];
         wall.brickCount.setBrickCount(wall.bricks.length);
+
+        if (level == 5 || level == 6){
+            wall.block1.setVisible();
+            wall.block2.setVisible();
+            wall.ball.setXSpeed(4);
+            wall.ball.setYSpeed(-4);
+        }
+
     }
 
     public boolean hasLevel(){
         return level < levels.length;
+    }
+
+    public int getLevel(){
+        return this.level;
     }
 
 }
