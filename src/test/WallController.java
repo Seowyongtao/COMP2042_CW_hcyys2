@@ -8,7 +8,6 @@ public class WallController{
     private LevelManager levelManeger;
     private WallView wallView;
     private GameBoard gameBoard;
-    private DebugConsoleView debugConsoleView;
     private ImpactManager impactManager;
     LevelManager levelManager;
 
