@@ -280,6 +280,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wallView.message = "Restarting Game...";
             wallView.player.reset(new Point(300,430));
             wallView.ball.reset(new Point(300,430));
+            wallView.score.reset();
             wallController.wallReset();
             showPauseMenu = false;
             repaint();
