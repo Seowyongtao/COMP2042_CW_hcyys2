@@ -17,12 +17,7 @@
  */
 package test;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowListener;
-import java.awt.geom.Point2D;
 import java.util.Random;
 
 
@@ -39,6 +34,8 @@ public class WallView{
     String message;
     Color messageColor;
     Score score;
+    Block block1;
+    Block block2;
 
     public WallView(Rectangle drawArea, Point ballPos){
 
@@ -51,6 +48,9 @@ public class WallView{
 
         ball = new RubberBall(ballPos);
 
+        block1 = new Block(120, 190, 80,10);
+        block2 = new Block(390, 140, 80,10);
+
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
@@ -58,7 +58,6 @@ public class WallView{
         this.brickCount = new BrickCount(30);
 
         score = new Score();
-
     }
 
 
