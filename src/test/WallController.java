@@ -5,13 +5,10 @@ import java.awt.*;
 
 public class WallController{
 
-    private LevelManager levelManeger;
     private WallView wallView;
     private GameBoard gameBoard;
-    private DebugConsoleView debugConsoleView;
     private ImpactManager impactManager;
     LevelManager levelManager;
-
 
     public WallController(WallView wallView, GameBoard gameBoard, int lineCount, double brickDimensionRatio){
 
