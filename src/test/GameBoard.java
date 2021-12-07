@@ -21,6 +21,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
+import java.util.ArrayList;
 
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
@@ -37,6 +38,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static Color bgColor = Color.WHITE; //new
 
     private boolean showPauseMenu;
+    private boolean showHighScore;
 
     private Font menuFont;
 
@@ -58,6 +60,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         strLen = 0;
         showPauseMenu = false;
+        showHighScore = false;
 
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 
@@ -100,6 +103,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         if(showPauseMenu)
             drawMenu(g2d);
+
+//        if(showHighScore)
+//            drawObscureHighScoreBoard(g2d, wallController.getScoreList().getHighScoreList());
+
 
         Toolkit.getDefaultToolkit().sync();
     }
@@ -175,6 +182,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         drawPauseMenu(g2d);
     }
 
+    private void drawObscureHighScoreBoard(Graphics2D g2d, ArrayList<Integer> top3ScoreList){
+        obscureGameBoard(g2d);
+        drawHighScore(g2d, top3ScoreList);
+    }
+
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -240,8 +252,80 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    private void drawHighScore(Graphics2D g2d, ArrayList<Integer> top3ScoreList){
+
+        Font tmpFont = g2d.getFont();
+        Color tmpColor = g2d.getColor();
+
+        g2d.setFont(new Font("Monospaced",Font.PLAIN,TEXT_SIZE));
+        g2d.setColor(Color.GREEN);
+
+        if(strLen == 0){
+            FontRenderContext frc = g2d.getFontRenderContext();
+            strLen = menuFont.getStringBounds("High Score:",frc).getBounds().width;
+        }
+
+        int x = (this.getWidth() - strLen) / 2;
+        int y = this.getHeight() / 10;
+
+        g2d.drawString("TOP 3 SCORE",x,y);
+
+        x = this.getWidth() / 4;
+        y = this.getHeight() / 4;
+
+        try
+        {
+            String top1 = "1. " + top3ScoreList.get(0);
+            g2d.drawString(top1,x,y);
+        }
+        catch(Exception e)
+        {
+            String top1 = "1. 0" ;
+            g2d.drawString(top1,x,y);
+        }
+
+        y *= 2;
+
+        try
+        {
+            String top2 = "2. " + top3ScoreList.get(1);
+            g2d.drawString(top2,x,y);
+        }
+        catch(Exception e)
+        {
+            String top2 = "2. 0";
+            g2d.drawString(top2,x,y);
+        }
+
+        y *= 3.0/2;
+
+        try
+        {
+            String top3 = "3. " + top3ScoreList.get(2);
+            g2d.drawString(top3,x,y);
+        }
+        catch(Exception e)
+        {
+            String top3 = "3. 0";
+            g2d.drawString(top3,x,y);
+        }
+
+        x = (this.getWidth() - strLen) / 3;
+        y *= 1.25;
+
+        String playerScore = "YOUR SCORE: " + this.wallView.score.getScore();
+        g2d.drawString(playerScore,x,y);
+
+        g2d.setFont(tmpFont);
+        g2d.setColor(tmpColor);
+    }
+
     public void setBgColor (Color color){
         bgColor = color;
+    }
+
+    public void setShowHighScore(boolean status){
+        showHighScore = status;
     }
 
     public void onLostFocus(){
@@ -264,6 +348,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 wallView.player.movRight();
                 break;
             case KeyEvent.VK_ESCAPE:
+                if(showHighScore){
+                    setShowHighScore(false);
+                }
                 showPauseMenu = !showPauseMenu;
                 repaint();
                 gameTimer.stop();
