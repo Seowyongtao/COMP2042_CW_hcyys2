@@ -104,9 +104,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         if(showPauseMenu)
             drawMenu(g2d);
 
-//        if(showHighScore)
-//            drawObscureHighScoreBoard(g2d, wallController.getScoreList().getHighScoreList());
-
+        if(showHighScore)
+            drawObscureHighScoreBoard(g2d, wallController.getScoreList().getHighScoreList());
 
         Toolkit.getDefaultToolkit().sync();
     }
