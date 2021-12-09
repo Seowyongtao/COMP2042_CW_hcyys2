@@ -4,7 +4,9 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
-
+/**
+ * For setting up the properties of a cement brick
+ */
 public class CementBrick extends Brick {
 
 
@@ -16,7 +18,12 @@ public class CementBrick extends Brick {
     private Crack crack;
     private Shape brickFace;
 
-
+    /**
+     * Constructor for cement brick
+     *
+     * @param point Location point of the brick
+     * @param size Size of the brick
+     */
     public CementBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
@@ -28,6 +35,15 @@ public class CementBrick extends Brick {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * Return false if the brick is broken
+     * Make a crack on the brick and return false if the brick is not broken
+     *
+     * @param point Point of the impact
+     * @param dir Value for the direction
+     *
+     * @return true/false
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -41,7 +57,11 @@ public class CementBrick extends Brick {
         return true;
     }
 
-
+    /**
+     * Get the shape of the brick
+     *
+     * @return Shape of the brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
@@ -55,9 +75,13 @@ public class CementBrick extends Brick {
         }
     }
 
+    /**
+     * Reset the brick to its initial look
+     */
     public void repair(){
         super.repair();
         crack.reset();
         brickFace = super.brickFace;
     }
 }
+

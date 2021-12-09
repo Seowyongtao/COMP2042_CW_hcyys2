@@ -21,7 +21,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
+/**
+ * For setting up the properties of a steel brick
+ */
 public class SteelBrick extends Brick {
 
     private static final String NAME = "Steel Brick";
@@ -33,6 +35,11 @@ public class SteelBrick extends Brick {
     private Random rnd;
     private Shape brickFace;
 
+    /**
+     * Constructor for SteelBrick
+     * @param point Location point of the brick
+     * @param size Size of the brick
+     */
     public SteelBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
@@ -45,11 +52,23 @@ public class SteelBrick extends Brick {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * Get the shape of the brick
+     *
+     * @return Shape of the brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
-
+    /**
+     * If the brick is broken return false, if not call impact() method and return broken after it
+     *
+     * @param point Point of the impact
+     * @param dir Value for the direction
+     *
+     * @return true/false
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -57,6 +76,9 @@ public class SteelBrick extends Brick {
         return  super.isBroken();
     }
 
+    /**
+     * If the random number is smaller than the STEEL_PROBABILITY then call the impact() mehtod
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();

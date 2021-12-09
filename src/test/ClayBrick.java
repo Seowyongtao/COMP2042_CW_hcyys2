@@ -6,8 +6,7 @@ import java.awt.geom.Point2D;
 
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * For setting up the properties of a clay brick
  */
 public class ClayBrick extends Brick {
 
@@ -17,10 +16,12 @@ public class ClayBrick extends Brick {
     private static final int CLAY_STRENGTH = 1;
 
 
-
-
-
-
+    /**
+     * Constructor for ClayBrick
+     *
+     * @param point Location point of the brick
+     * @param size Size of the brick
+     */
     public ClayBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
     }
@@ -30,6 +31,11 @@ public class ClayBrick extends Brick {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * Get the shape of the brick
+     *
+     * @return Shape of the brick
+     */
     @Override
     public Shape getBrick() {
         return super.brickFace;
@@ -37,3 +43,4 @@ public class ClayBrick extends Brick {
 
 
 }
+

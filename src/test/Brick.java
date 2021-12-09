@@ -7,8 +7,7 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * For setting up the properties of a player
  */
 abstract public class Brick  {
 
@@ -23,7 +22,9 @@ abstract public class Brick  {
     public static final int RIGHT_IMPACT = 400;
 
 
-
+    /**
+     * For setting up properties of crack on a brick
+     */
     public class Crack{
 
         private static final int CRACK_SECTIONS = 3;
@@ -43,7 +44,12 @@ abstract public class Brick  {
         private int crackDepth;
         private int steps;
 
-
+        /**
+         * Constructor for Crack
+         *
+         * @param crackDepth Value for the depth of the crack
+         * @param steps Value for the steps
+         */
         public Crack(int crackDepth, int steps){
 
             crack = new GeneralPath();
@@ -53,12 +59,19 @@ abstract public class Brick  {
         }
 
 
-
+        /**
+         * Return crack for drawing purpose
+         *
+         * @return GeneralPath object
+         */
         public GeneralPath draw(){
 
             return crack;
         }
 
+        /**
+         * Reset the crack
+         */
         public void reset(){
             crack.reset();
         }
@@ -187,7 +200,16 @@ abstract public class Brick  {
 
     private boolean broken;
 
-
+    /**
+     * Constructor for Brick
+     *
+     * @param name Name of the brick
+     * @param pos Position of the brick
+     * @param size Size of the brick
+     * @param border Border color of the brick
+     * @param inner Inner color of the brick
+     * @param strength Value for the strength of the brick
+     */
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();
         broken = false;
@@ -201,6 +223,14 @@ abstract public class Brick  {
 
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
+    /**
+     * If the brick is broken return false, if not call impact() method and return broken after it
+     *
+     * @param point Point of the impact
+     * @param dir Value for the direction
+     *
+     * @return true/false
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
@@ -210,17 +240,31 @@ abstract public class Brick  {
 
     public abstract Shape getBrick();
 
-
-
+    /**
+     * Get current border color of the brick
+     *
+     * @return Current border color of the brick
+     */
     public Color getBorderColor(){
         return  border;
     }
 
+    /**
+     * Get current inner color of the brick
+     *
+     * @return Current inner color of the brick
+     */
     public Color getInnerColor(){
         return inner;
     }
 
-
+    /**
+     * Return value according to the direction of the impact and return 0 if the brick is broken
+     *
+     * @param b Bal object
+     *
+     * @return Value according to the direction of the impact or 0 if the brick is broken
+     */
     public final int findImpact(Ball b){
         if(broken)
             return 0;
@@ -236,21 +280,39 @@ abstract public class Brick  {
         return out;
     }
 
+    /**
+     * Check whether the brick is broken
+     *
+     * @return true/false
+     */
     public final boolean isBroken(){
         return broken;
     }
 
+    /**
+     * Set broken to false and reset the strength of the brick
+     */
     public void repair() {
         broken = false;
         strength = fullStrength;
     }
 
+    /**
+     * Decrement the strength of the brick and update broken based on the strength
+     */
     public void impact(){
         strength--;
         broken = (strength == 0);
     }
 
+    /**
+     * Get the current value of the strength of the brick
+     *
+     * @return Current value of the strength of the brick
+     */
     public int getStrength(){return strength;}
+
+
 
 }
 
