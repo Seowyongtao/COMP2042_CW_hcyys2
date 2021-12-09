@@ -32,7 +32,7 @@ public class RubberBall extends Ball {
     public RubberBall(Point2D center){
 
         super(center,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
-        this.setSpeed(this.randomSpeedY(), this.randomSpeedY());
+        this.setSpeed(this.randomSpeedX(), this.randomSpeedY());
     }
 
 
