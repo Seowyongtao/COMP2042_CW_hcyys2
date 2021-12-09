@@ -21,7 +21,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-
+/**
+ * For setting up the properties of a player
+ */
 public class Player {
 
     private Color borderColor = Color.GREEN.darker().darker();
@@ -35,8 +37,15 @@ public class Player {
     private int min;
     private int max;
 
-
-    public Player(Point ballPoint,int width,int height,Rectangle container) {
+    /**
+     * Constructor for Player
+     *
+     * @param ballPoint Starting point of the ball
+     * @param width     Value for the width
+     * @param height    Value for the height
+     * @param container Area of the wall screen
+     */
+    public Player(Point ballPoint, int width, int height, Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);
@@ -45,67 +54,142 @@ public class Player {
 
     }
 
-    private Rectangle makeRectangle(int width,int height){
-        Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
-        return  new Rectangle(p,new Dimension(width,height));
+    private Rectangle makeRectangle(int width, int height) {
+        Point p = new Point((int) (ballPoint.getX() - (width / 2)), (int) ballPoint.getY());
+        return new Rectangle(p, new Dimension(width, height));
     }
 
-    public boolean impact(Ball b){
-        return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
+    /**
+     * To check whether the ball impact with player or not
+     *
+     * @param b Ball object
+     * @return true/false
+     */
+    public boolean impact(Ball b) {
+        return playerFace.contains(b.getPosition()) && playerFace.contains(b.down);
     }
 
-    public void move(){
+    /**
+     * Move the player according to the moveAmount
+     */
+    public void move() {
         double x = ballPoint.getX() + moveAmount;
-        if(x < min || x > max)
+        if (x < min || x > max)
             return;
-        ballPoint.setLocation(x,ballPoint.getY());
-        playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+        ballPoint.setLocation(x, ballPoint.getY());
+        playerFace.setLocation(ballPoint.x - (int) playerFace.getWidth() / 2, ballPoint.y);
     }
 
-    public void moveLeft(){
+    /**
+     * Turn moveAmount to negative
+     */
+    public void moveLeft() {
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
-    public void movRight(){
+    /**
+     * Turn moveAmount to positive
+     */
+    public void movRight() {
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
-    public void stop(){
+    /**
+     * Turn moveAmount into 0
+     */
+    public void stop() {
         moveAmount = 0;
     }
 
-    public Shape getPlayerFace(){
-        return  playerFace;
+    /**
+     * Get the shape of the player
+     *
+     * @return Shape of the player
+     */
+    public Shape getPlayerFace() {
+        return playerFace;
     }
 
-    public void moveTo(Point p){
+    /**
+     * Move player to give point
+     *
+     * @param p Point object
+     */
+    public void moveTo(Point p) {
         ballPoint.setLocation(p);
-        playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+        playerFace.setLocation(ballPoint.x - (int) playerFace.getWidth() / 2, ballPoint.y);
     }
 
-    public void reset(Point startingPoint){
+    /**
+     * Move player back to the starting point
+     *
+     * @param startingPoint Starting point
+     */
+    public void reset(Point startingPoint) {
         moveTo(startingPoint);
     }
 
-    public Color getInnerColor(){
+    /**
+     * Get the current inner color of the player
+     *
+     * @return Current inner color of the player
+     */
+    public Color getInnerColor() {
         return innerColor;
     }
 
-    public Color getBorderColor(){
+    /**
+     * Get the current border color of the player
+     *
+     * @return Current border color of the player
+     */
+    public Color getBorderColor() {
         return borderColor;
     }
 
-    public void setInnerColor(Color color){
+    /**
+     * Update the inner color of the player
+     *
+     * @param color New inner color
+     */
+    public void setInnerColor(Color color) {
         innerColor = color;
     }
 
-    public void setBorderColor(Color color){
+    /**
+     * Update the border color of the player
+     *
+     * @param color New border color
+     */
+    public void setBorderColor(Color color) {
         borderColor = color;
     }
 
-    public int getMoveAmount(){return moveAmount;}
+    /**
+     * Get the value of moveAmount
+     *
+     * @return Value of moveAmount
+     */
+    public int getMoveAmount() {
+        return moveAmount;
+    }
 
-    public int getDefMoveAmount(){return  DEF_MOVE_AMOUNT;}
+    /**
+     * Get the value of DEF_MOVE_AMOUNT
+     *
+     * @return Value of DEF_MOVE_AMOUNT
+     */
+    public int getDefMoveAmount() {
+        return DEF_MOVE_AMOUNT;
+    }
 
-    public Point getBallPoint(){return ballPoint;}
+    /**
+     * Get the current ballPoint
+     *
+     * @return Current ballPoint
+     */
+    public Point getBallPoint() {
+        return ballPoint;
+    }
+
 }

@@ -3,11 +3,20 @@ package test;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/**
+ * For handling all the logics that are related to the impact between ball, wall, player and brick
+ */
 public class ImpactManager {
 
     private WallView wall;
     private Rectangle area;
 
+    /**
+     * Constructor for ImpactManager
+     *
+     * @param wall WallView object
+     * @param area Area of the wall screen
+     */
     public ImpactManager(WallView wall, Rectangle area){
 
         this.wall = wall;
@@ -15,6 +24,14 @@ public class ImpactManager {
 
     }
 
+    /**
+     * If the ball impact with the player, reverse the ball's Y value <br>
+     * If the ball impact with the brick, increase the score by 10 and decrement brick count by 1<br>
+     * If the ball impact with the side border, reverse the ball's X value <br>
+     * If the ball impact with the upper side border, reverse the ball's Y value <br>
+     * If the ball go beyong the down side border, decrement ball count by 1, decrement score by 10, and set ball's islost to true
+     *
+     */
     public void findImpacts(){
         if(wall.player.impact(wall.ball)){
             wall.ball.reverseY();

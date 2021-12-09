@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * The container for skip level button, reset ball button, ballXSpeed slider, ballYSpeed slider, and night mode radio button
+ */
 public class DebugConsoleView extends JDialog implements WindowListener {
 
     private JButton skipLevel;
@@ -19,7 +22,9 @@ public class DebugConsoleView extends JDialog implements WindowListener {
     private JRadioButton nightModeOff;
     private ButtonGroup nightMode;
 
-
+    /**
+     * Constructor for DebugConsoleView
+     */
     public DebugConsoleView(){
 
         initialize();
@@ -87,62 +92,116 @@ public class DebugConsoleView extends JDialog implements WindowListener {
         return out;
     }
 
+    /**
+     * Get ballXSpeed value
+     *
+     * @return ballXSpeed
+     */
     public JSlider getBallXSpeed(){
         return ballXSpeed;
     }
 
+    /**
+     * Get ballYSpeed value
+     *
+     * @return ballYSpeed
+     */
     public JSlider getBallYSpeed(){
         return ballYSpeed;
     }
 
-
+    /**
+     * Set the value for ballXSpeed and ballYSpeed
+     *
+     * @param x value for ballXSpeed
+     * @param y value for ballYSpeed
+     */
     public void setValues(int x,int y){
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);
     }
 
-    void addSkipLevelListener(ActionListener listenForSkipLevelButton){
+    /**
+     * Add ActionListener to skipLevel
+     *
+     * @param listenForSkipLevelButton ActionListener object
+     */
+    public void addSkipLevelListener(ActionListener listenForSkipLevelButton){
 
         skipLevel.addActionListener(listenForSkipLevelButton);
 
     }
 
-    void addResetBallsListener(ActionListener listenForResetBallsButton){
+    /**
+     * Add ActionListener to resetBalls
+     *
+     * @param listenForResetBallsButton ActionListener object
+     */
+    public void addResetBallsListener(ActionListener listenForResetBallsButton){
 
         resetBalls.addActionListener(listenForResetBallsButton);
 
     }
 
+    /**
+     * Get JRadioButton object nightModeOn
+     *
+     * @return JRadioButton object nightModeOn
+     */
     public JRadioButton getNightModeOn(){
         return  nightModeOn;
     }
 
+    /**
+     * Get JRadioButton object nightModeOff
+     *
+     * @return JRadioButton object nightModeOff
+     */
     public JRadioButton getNightModeOff(){
         return  nightModeOff;
     }
 
-    void addNightModeListener(ActionListener listenForNightModeRadioButtons){
+    /**
+     * Add ActionListener to nightModeOn and nightModeOff
+     *
+     * @param listenForNightModeRadioButtons ActionListener object
+     */
+    public void addNightModeListener(ActionListener listenForNightModeRadioButtons){
 
         nightModeOn.addActionListener(listenForNightModeRadioButtons);
         nightModeOff.addActionListener(listenForNightModeRadioButtons);
     }
 
-    void addBallXSpeedListener(ChangeListener listenForBallXSpeedSlider){
+    /**
+     * Add ChangeListener to ballXSpeed
+     *
+     * @param listenForBallXSpeedSlider ChangeListener object
+     */
+    public void addBallXSpeedListener(ChangeListener listenForBallXSpeedSlider){
 
         ballXSpeed.addChangeListener(listenForBallXSpeedSlider);
     }
 
-    void addBallYSpeedListener(ChangeListener listenForBallYSpeedSlider){
+    /**
+     * Add ChangeListener to ballYSpeed
+     *
+     * @param listenForBallYSpeedSlider ChangeListener object
+     */
+    public void addBallYSpeedListener(ChangeListener listenForBallYSpeedSlider){
 
         ballYSpeed.addChangeListener(listenForBallYSpeedSlider);
     }
 
+    /**
+     * Add WindowListener to DebugConsoleView itself
+     *
+     * @param listenForDebugConsoleWindow WindowListener object
+     */
     public void addDebugConsoleWindowListener(WindowListener listenForDebugConsoleWindow){
 
         this.addWindowListener(listenForDebugConsoleWindow);
 
     }
-
 
     @Override
     public void windowOpened(WindowEvent e) {

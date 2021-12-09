@@ -16,15 +16,22 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package test;
-
 import java.awt.*;
 
-
+/**
+ * The main class for the program.
+ */
 public class GraphicsMain {
 
+    /**
+     * This is main method for the driver program.
+     *
+     * @param args Stores the incoming command line arguments for the program.
+     */
     public static void main(String[] args){
 //        EventQueue.invokeLater(() -> new GameFrame().initialize());
         EventQueue.invokeLater(GameFrame::new);
     }
 
 }
+

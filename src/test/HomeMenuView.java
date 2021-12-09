@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The container for StartButton and ExitButton
+ *
+ */
 public class HomeMenuView extends JPanel {
 
     private ExitButton exitButton = new ExitButton();
@@ -21,13 +25,23 @@ public class HomeMenuView extends JPanel {
 
     }
 
-    void addExitListener(ActionListener listenForExitButton){
+    /**
+     * Add ActionListener to exitButton
+     *
+     * @param listenForExitButton ActionListener object
+     */
+    public void addExitListener(ActionListener listenForExitButton){
 
         exitButton.addActionListener(listenForExitButton);
 
     }
 
-    void addStartListener(ActionListener listenForStartButton){
+    /**
+     * Add ActionListener to startButton
+     *
+     * @param listenForStartButton ActionListener object
+     */
+    public void addStartListener(ActionListener listenForStartButton){
 
         startButton.addActionListener(listenForStartButton);
 

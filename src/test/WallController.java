@@ -3,6 +3,9 @@ package test;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Responsible for creating the behaviours/logics for wall's components
+ */
 public class WallController{
 
     private WallView wallView;
@@ -11,6 +14,14 @@ public class WallController{
     private ScoreList scoreList;
     LevelManager levelManager;
 
+    /**
+     * Constructor for WallController
+     *
+     * @param wallView WallView object
+     * @param gameBoard GameBoard object
+     * @param lineCount Number of lines for bricks
+     * @param brickDimensionRatio Dimension ratio for brick
+     */
     public WallController(WallView wallView, GameBoard gameBoard, int lineCount, double brickDimensionRatio){
 
         this.wallView = wallView;
@@ -86,6 +97,9 @@ public class WallController{
 
     }
 
+    /**
+     * Repair the bricks, set the brick count to its initial value, and set the ball count to its initial value
+     */
     public void wallReset(){
 
         for(Brick b : wallView.bricks)
@@ -95,8 +109,14 @@ public class WallController{
 
     }
 
+    /**
+     * Return scoreList
+     *
+     * @return scoreList
+     */
     public ScoreList getScoreList(){
         return this.scoreList;
     }
 
 }
+
