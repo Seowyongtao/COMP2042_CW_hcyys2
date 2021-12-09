@@ -9,11 +9,19 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * Responsible for writing score into file and load the scores in order from the file to high score array list
+ */
 public class ScoreList {
 
     private ArrayList<Integer> scoreList;
     private ArrayList<Integer> highScoreList;
 
+    /**
+     * Constructor for ScoreList
+     *
+     * @param score Value of the score
+     */
     public ScoreList(int score){
         scoreList = new ArrayList<Integer>();
         highScoreList = new ArrayList<Integer>();
@@ -25,6 +33,11 @@ public class ScoreList {
         highScoreList = (ArrayList<Integer>) scoreList.stream().limit(3).collect(Collectors.toList());
     }
 
+    /**
+     * Write the score into last line of the file
+     *
+     * @param score Value of the score
+     */
     public void writeToLastLine(int score){
 
         try
@@ -43,6 +56,9 @@ public class ScoreList {
 
     }
 
+    /**
+     * Load the datas from file to scoreList array
+     */
     public void loadDatasToArray(){
 
         try {
@@ -73,7 +89,13 @@ public class ScoreList {
 
     }
 
+    /**
+     * Return highScoreList array
+     *
+     * @return highScoreList array
+     */
     public ArrayList<Integer> getHighScoreList(){
         return this.highScoreList;
     }
 }
+
