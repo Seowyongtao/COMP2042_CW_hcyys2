@@ -102,4 +102,10 @@ public class Player {
     public void setBorderColor(Color color){
         borderColor = color;
     }
+
+    public int getMoveAmount(){return moveAmount;}
+
+    public int getDefMoveAmount(){return  DEF_MOVE_AMOUNT;}
+
+    public Point getBallPoint(){return ballPoint;}
 }
