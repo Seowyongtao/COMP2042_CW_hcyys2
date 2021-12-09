@@ -250,7 +250,7 @@ abstract public class Brick  {
         broken = (strength == 0);
     }
 
-
+    public int getStrength(){return strength;}
 
 }
 
