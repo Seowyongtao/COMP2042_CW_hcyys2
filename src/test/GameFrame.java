@@ -22,7 +22,9 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-
+/**
+ * The container for GameBoard and HomeMenuView.
+ */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -32,6 +34,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private GameBoard gameBoard;
     private HomeMenuView homeMenuView;
 
+    /**
+     * Constructor for GameFrame.
+     */
     public GameFrame(){
 
         this.initialize();
@@ -54,6 +59,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 //        this.setVisible(true);
 //    }
 
+    /**
+     * Initialize the initial properties of frame.
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -65,6 +73,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
+    /**
+     *Remove homeMenuView from the frame and add in gameBoard to it.
+     */
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenuView);
@@ -87,6 +98,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setLocation(x,y);
     }
 
+    /**
+     * Update gaming to true when the window gained focus.
+     *
+     * @param windowEvent WindowEvent object
+     */
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
         /*
@@ -100,6 +116,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = true;
     }
 
+    /**
+     * Call the onLostFocus() method when the window lost focus and gaming is equal to true.
+     *
+     * @param windowEvent WindowEvent object
+     */
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)

@@ -23,6 +23,10 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 
+
+/**
+ * The container for Wall and Debug Console and responsible for drawing components for wall, pause menu and high score board
+ */
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";
@@ -54,7 +58,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private WallController wallController;
     public  Timer gameTimer;
 
-
+    /**
+     * Constructor for GameBoard
+     *
+     * @param owner Jframe object
+     */
     public GameBoard(JFrame owner){
         super();
 
@@ -83,6 +91,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         this.addMouseMotionListener(this);
     }
 
+    /**
+     * Draw ball, bricks, player, blocks, pause menu, high score board
+     *
+     * @param g Graphics object
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -319,14 +332,27 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * Update bgColor
+     *
+     * @param color Desired color
+     */
     public void setBgColor (Color color){
         bgColor = color;
     }
 
+    /**
+     * Update the showHighScore
+     *
+     * @param status true/false
+     */
     public void setShowHighScore(boolean status){
         showHighScore = status;
     }
 
+    /**
+     * Stop the gameTimer,change the message to "Focus Lost", and repaint
+     */
     public void onLostFocus(){
         gameTimer.stop();
         wallView.message = "Focus Lost";
@@ -337,6 +363,15 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * Press A to move the player left <br>
+     * Press D to move the player right <br>
+     * Press ESC to show pause menu <br>
+     * Press SPACE to pause or resume the game <br>
+     * Press ALT + SHIFT + F1 to show debug console
+     *
+     * @param keyEvent keyEvent object
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
@@ -369,11 +404,23 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * Stop the player when the key is released
+     *
+     * @param keyEvent keyEvent object
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         wallView.player.stop();
     }
 
+    /**
+     * Click CONTINUE to resume the game <br>
+     * Click RESTART to restart the game <br>
+     * Click EXIT to quit the game
+     *
+     * @param mouseEvent mouseEvent object
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -429,6 +476,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
+    /**
+     * Change the cursor's looks to hand if the cursor points at CONTINUE, RESTART, EXIT
+     *
+     * @param mouseEvent
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
