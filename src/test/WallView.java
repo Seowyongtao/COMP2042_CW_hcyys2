@@ -20,7 +20,9 @@ package test;
 import java.awt.*;
 import java.util.Random;
 
-
+/**
+ * Responsible for creating objects that are related to the game such as ball, bricks, player for GameBoard to draw
+ */
 public class WallView{
 
     private Random rnd;
@@ -37,6 +39,12 @@ public class WallView{
     Block block1;
     Block block2;
 
+    /**
+     * Constructor for WallView
+     *
+     * @param drawArea Area for the wall screen
+     * @param ballPos Staring point for the ball
+     */
     public WallView(Rectangle drawArea, Point ballPos){
 
         message ="";
@@ -62,3 +70,4 @@ public class WallView{
 
 
 }
+

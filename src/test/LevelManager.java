@@ -2,6 +2,9 @@ package test;
 
 import java.awt.*;
 
+/**
+ * For handling all the logics that are related to levels
+ */
 public class LevelManager {
 
     private WallView wall;
@@ -15,6 +18,15 @@ public class LevelManager {
     private Brick[][] levels;
     private int level;
 
+    /**
+     * Constructor for LevelManager
+     *
+     * @param wall WallView object
+     * @param area Area for the wall screen
+     * @param brickCount Brick Count
+     * @param lineCount Line Count for brick
+     * @param brickDimensionRatio Dimension ratio for a brick
+     */
     public LevelManager(WallView wall, Rectangle area, int brickCount, int lineCount, double brickDimensionRatio){
 
         this.wall = wall;
@@ -126,6 +138,15 @@ public class LevelManager {
         return tmp;
     }
 
+    /**
+     * Make different kinds of brick according to the level
+     *
+     * @param drawArea Area of the wall screen
+     * @param brickCount Brick count
+     * @param lineCount line count for brick
+     * @param brickDimensionRatio Dimension ratio of a brick
+     * @return  Brick object
+     */
     public Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -137,6 +158,10 @@ public class LevelManager {
         return tmp;
     }
 
+    /**
+     * Up level by one and set the brick count to its initial value <br>
+     * If it is level 5 or level 6, make block1 and block2 visible and set the ball's XSpeed and YSpeed to 4
+     */
     public void nextLevel(){
         wall.bricks = levels[level++];
         wall.brickCount.setBrickCount(wall.bricks.length);
@@ -150,10 +175,20 @@ public class LevelManager {
 
     }
 
+    /**
+     * Check whether there is still level
+     *
+     * @return true/false
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * Get the value of current level
+     *
+     * @return Value of current level
+     */
     public int getLevel(){
         return this.level;
     }

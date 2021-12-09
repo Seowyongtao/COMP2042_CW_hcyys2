@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * Responsible for creating the behaviours/logics for debug console's components
+ */
 public class DebugConsoleController {
 
     private DebugConsoleView theView;
@@ -17,6 +20,15 @@ public class DebugConsoleController {
     private GameBoard gameBoard;
     private JFrame gameFrame;
 
+    /**
+     * Constructor for DebugConsoleController.
+     *
+     * @param theView DebugConsoleView object
+     * @param gameFrame JFrame object
+     * @param wallView WallView object
+     * @param wallController WallController object
+     * @param gameBoard GameBoard object
+     */
     public DebugConsoleController(DebugConsoleView theView, JFrame gameFrame, WallView wallView,WallController wallController, GameBoard gameBoard){
 
         this.theView = theView;
@@ -34,17 +46,30 @@ public class DebugConsoleController {
 
     }
 
+    /**
+     * ActionListener for skip level button
+     */
     class SkipLevelListener implements ActionListener {
-
+        /**
+         * Go to next level when the skip level button is clicked
+         *
+         * @param e ActionEvent object
+         */
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Skip Level");
             wallController.levelManager.nextLevel();
         }
 
     }
 
+    /**
+     * ActionListener for reset ball button
+     */
     class ResetBallsListener implements ActionListener {
-
+        /**
+         * Reset the ball's count when the reset ball button is clicked
+         *
+         * @param e ActionEvent object
+         */
         public void actionPerformed(ActionEvent e) {
             System.out.println("Reset Ball Count");
             wallView.ball.resetBallCount();
@@ -52,17 +77,31 @@ public class DebugConsoleController {
 
     }
 
+    /**
+     * ActionListener for night mode radio buttons
+     */
     class NightModeListener implements  ActionListener{
 
         private JRadioButton NightModeOn;
         private JRadioButton NightModeOff;
 
+        /**
+         * Constructor for NightModeListener
+         *
+         * @param NightModeOn JRadioButton object
+         * @param NightModeOff JRadioButton object
+         */
         public NightModeListener(JRadioButton NightModeOn, JRadioButton NightModeOff){
 
             this.NightModeOn = NightModeOn;
             this.NightModeOff = NightModeOff;
         }
 
+        /**
+         * Change to night mode if the action event is NightModeOn, and turn off the night mode if the action event is NightModeOff
+         *
+         * @param e ActionEvent object
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource()==NightModeOn){
@@ -92,22 +131,37 @@ public class DebugConsoleController {
         }
     }
 
+    /**
+     * ChangeListener for ballXSpeed slider
+     */
     class BallXSpeedSlider implements ChangeListener {
-
+        /**
+         * Update the value for Ball's XSpeed according to the value getting from the ballXSpeed slider
+         * @param e ChangeEvent object
+         */
         @Override
         public void stateChanged(ChangeEvent e) {
             wallView.ball.setXSpeed(theView.getBallXSpeed().getValue());
         }
     }
 
+    /**
+     * ChangeListener for ballYSpeed slider
+     */
     class BallYSpeedSlider implements ChangeListener {
-
+        /**
+         * Update the value for Ball's YSpeed according to the value getting from the ballYSpeed slider
+         * @param e ChangeEvent Object
+         */
         @Override
         public void stateChanged(ChangeEvent e) {
             wallView.ball.setYSpeed(theView.getBallYSpeed().getValue());
         }
     }
 
+    /**
+     * WindowListener for debug console
+     */
     class DebugConsoleWindowListener implements WindowListener {
 
 
@@ -116,9 +170,13 @@ public class DebugConsoleController {
 
         }
 
+        /**
+         * Call gameBoard's repaint method when the debug console's window is closed
+         *
+         * @param e WindowEvent object
+         */
         @Override
         public void windowClosing(WindowEvent e) {
-            System.out.println("WINDOW CLOSED");
             gameBoard.repaint();
         }
 
@@ -137,9 +195,13 @@ public class DebugConsoleController {
 
         }
 
+        /**
+         * Set the location of the debug console to the middle when its window is activated
+         *
+         * @param e WindowEvent object
+         */
         @Override
         public void windowActivated(WindowEvent e) {
-            System.out.println("WINDOW ACTIVATED");
 
             int x = ((gameFrame.getWidth() - theView.getWidth()) / 2) + gameFrame.getX();
             int y = ((gameFrame.getHeight() - theView.getHeight()) / 2) + gameFrame.getY();
@@ -156,4 +218,5 @@ public class DebugConsoleController {
 
     }
 }
+
 
