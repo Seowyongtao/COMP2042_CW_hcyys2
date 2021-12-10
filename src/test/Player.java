@@ -39,6 +39,7 @@ public class Player {
     private int initialWidth;
     private int width;
     private int height;
+    private Rectangle container;
 
     /**
      * Constructor for Player
@@ -54,9 +55,10 @@ public class Player {
         this.initialWidth = width;
         this.width = width;
         this.height = height;
+        this.container = container;
         playerFace = makeRectangle(this.width, this.height);
-        min = container.x + (width / 2);
-        max = min + container.width - width;
+        min = container.x + (this.width / 2);
+        max = min + container.width - this.width;
 
     }
 
@@ -203,6 +205,8 @@ public class Player {
      */
     public void widthDecrement(){
         this.width = this.width - 25;
+        min = container.x + (this.width / 2);
+        max = min + container.width - this.width;
         playerFace = makeRectangle(width, height);
     }
 
@@ -211,6 +215,8 @@ public class Player {
      */
     public void resetWidth(){
         this.width = initialWidth;
+        min = container.x + (this.width / 2);
+        max = min + container.width - this.width;
         playerFace = makeRectangle(width, height);
     }
 
