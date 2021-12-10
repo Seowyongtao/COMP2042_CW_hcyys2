@@ -10,10 +10,13 @@ import java.awt.event.ActionListener;
 public class StartButton extends JButton{
     /**
      * Constructor for StartButton
+     *
+     * @param xCoordinate Value for x coordinate
+     * @param yCoordinate Value for y coordinate
      */
-    public StartButton(){
+    public StartButton(int xCoordinate, int yCoordinate){
 
-        this.setBounds(150, 215, 150, 35);
+        this.setBounds(xCoordinate, yCoordinate, 150, 35);
         this.setText("START");
     }
 

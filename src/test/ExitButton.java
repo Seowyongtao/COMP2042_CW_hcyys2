@@ -10,9 +10,12 @@ import java.awt.event.ActionListener;
 public class ExitButton extends JButton{
     /**
      * Constructor for exit button
+     *
+     * @param xCoordinate Value for x coordinate
+     * @param yCoordinate Value for y coordinate
      */
-    public ExitButton(){
-        this.setBounds(150, 250, 150, 35);
+    public ExitButton(int xCoordinate, int yCoordinate){
+        this.setBounds(xCoordinate, yCoordinate, 150, 35);
         this.setText("EXIT");
     }
 
