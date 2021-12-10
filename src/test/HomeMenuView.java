@@ -6,13 +6,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * The container for StartButton,ExitButton and BackGroundImage
+ * The container for StartButton, ExitButton, InfoButton and BackGroundImage
  *
  */
 public class HomeMenuView extends JPanel {
 
-    private ExitButton exitButton = new ExitButton();
-    private StartButton startButton = new StartButton();
+    private ExitButton exitButton = new ExitButton(150, 250);
+    private StartButton startButton = new StartButton(150, 180);
+    private InfoButton infoButton = new InfoButton(150, 215);
     private BackGroundImage backGroundImage = new BackGroundImage();
 
     HomeMenuView(){
@@ -21,6 +22,7 @@ public class HomeMenuView extends JPanel {
         this.setLayout(null);
 
         this.add(startButton);
+        this.add(infoButton);
         this.add(exitButton);
         this.add(backGroundImage);
     }
@@ -44,6 +46,17 @@ public class HomeMenuView extends JPanel {
     public void addStartListener(ActionListener listenForStartButton){
 
         startButton.addActionListener(listenForStartButton);
+
+    }
+
+    /**
+     * Add ActionListener to infoButton
+     *
+     * @param listenForInfoButton ActionListener object
+     */
+    public void addInfoListener(ActionListener listenForInfoButton){
+
+        infoButton.addActionListener(listenForInfoButton);
 
     }
 

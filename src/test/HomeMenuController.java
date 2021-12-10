@@ -25,6 +25,7 @@ public class HomeMenuController {
 
         this.theView.addExitListener(new ExitListener());
         this.theView.addStartListener(new StartListener());
+        this.theView.addInfoListener(new InfoListener());
 
     }
 
@@ -50,13 +51,28 @@ public class HomeMenuController {
     public class StartListener implements ActionListener {
 
         /**
-         * call the enableGameBoard() method when the start button is clicked
+         * Start the game when the start button is clicked
          *
          * @param e ActionEvent object
          */
         public void actionPerformed(ActionEvent e) {
             owner.enableGameBoard();
         }
+    }
 
+    /**
+     * Action listener for info button
+     */
+    public class InfoListener implements ActionListener {
+
+        /**
+         * Open Info page when info button is clicked
+         *
+         * @param e ActionEvent object
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            owner.openInfoView();
+        }
     }
 }

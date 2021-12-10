@@ -23,7 +23,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 /**
- * The container for GameBoard and HomeMenuView.
+ * The container for GameBoard,HomeMenuView, and InfoView.
  */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
@@ -33,6 +33,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private GameBoard gameBoard;
     private HomeMenuView homeMenuView;
+    private HomeMenuController homeMenuController;
+    private InfoView infoView;
+    private InfoController infoContoller;
 
     /**
      * Constructor for GameFrame.
@@ -43,13 +46,23 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = false;
 
         homeMenuView = new HomeMenuView();
-        HomeMenuController homeMenuController = new HomeMenuController(homeMenuView, this);
+        homeMenuController = new HomeMenuController(homeMenuView, this);
         this.add(homeMenuView);
         this.setVisible(true);
 
+        infoView = new InfoView();
+        infoContoller = new InfoController(infoView, this);
         gameBoard = new GameBoard(this);
     }
 
+    //old code
+//    public void initialize(){
+//        this.setTitle(DEF_TITLE);
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.pack();
+//        this.autoLocate();
+//        this.setVisible(true);
+//    }
 
     /**
      * Initialize the initial properties of frame.
@@ -66,7 +79,41 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     /**
-     *Remove homeMenuView from the frame and add in gameBoard to it.
+     * Open Info Page
+     */
+    public void openInfoView(){
+        this.dispose();
+        this.remove(homeMenuView);
+        this.setTitle(DEF_TITLE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setSize(450, 300);
+        this.setUndecorated(true);
+        this.setResizable(false);
+        this.setLayout(null);
+        this.autoLocate();
+        this.add(infoView);
+        this.setVisible(true);
+    }
+
+    /**
+     * Open Home Menu page
+     */
+    public void openHomeMenuView(){
+        this.dispose();
+        this.remove(infoView);
+        this.setTitle(DEF_TITLE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setSize(450, 300);
+        this.setUndecorated(true);
+        this.setResizable(false);
+        this.setLayout(null);
+        this.autoLocate();
+        this.add(homeMenuView);
+        this.setVisible(true);
+    }
+
+    /**
+     *Start Game
      */
     public void enableGameBoard(){
         this.dispose();
