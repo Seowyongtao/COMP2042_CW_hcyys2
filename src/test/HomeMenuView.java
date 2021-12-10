@@ -1,28 +1,28 @@
 package test;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * The container for StartButton and ExitButton
+ * The container for StartButton,ExitButton and BackGroundImage
  *
  */
 public class HomeMenuView extends JPanel {
 
     private ExitButton exitButton = new ExitButton();
     private StartButton startButton = new StartButton();
+    private BackGroundImage backGroundImage = new BackGroundImage();
 
     HomeMenuView(){
 
-        this.setBackground(Color.green);
         this.setBounds(0,0, 450,300);
         this.setLayout(null);
 
-
         this.add(startButton);
         this.add(exitButton);
-
+        this.add(backGroundImage);
     }
 
     /**
