@@ -36,6 +36,9 @@ public class Player {
     private int moveAmount;
     private int min;
     private int max;
+    private int initialWidth;
+    private int width;
+    private int height;
 
     /**
      * Constructor for Player
@@ -48,7 +51,10 @@ public class Player {
     public Player(Point ballPoint, int width, int height, Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
-        playerFace = makeRectangle(width, height);
+        this.initialWidth = width;
+        this.width = width;
+        this.height = height;
+        playerFace = makeRectangle(this.width, this.height);
         min = container.x + (width / 2);
         max = min + container.width - width;
 
@@ -190,6 +196,22 @@ public class Player {
      */
     public Point getBallPoint() {
         return ballPoint;
+    }
+
+    /**
+     * Decrement the width by 30
+     */
+    public void widthDecrement(){
+        this.width = this.width - 25;
+        playerFace = makeRectangle(width, height);
+    }
+
+    /**
+     * Reset the width to its initial width
+     */
+    public void resetWidth(){
+        this.width = initialWidth;
+        playerFace = makeRectangle(width, height);
     }
 
 }

@@ -159,12 +159,13 @@ public class LevelManager {
     }
 
     /**
-     * Up level by one and set the brick count to its initial value <br>
+     * Up level by one, set the brick count to its initial value, and reset the width of the player as well<br>
      * If it is level 5 or level 6, make block1 and block2 visible and set the ball's XSpeed and YSpeed to 4
      */
     public void nextLevel(){
         wall.bricks = levels[level++];
         wall.brickCount.setBrickCount(wall.bricks.length);
+        wall.player.resetWidth();
 
         if (level == 5 || level == 6){
             wall.block1.setVisible();

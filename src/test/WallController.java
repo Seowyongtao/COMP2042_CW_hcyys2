@@ -52,7 +52,7 @@ public class WallController{
                     scoreList = new ScoreList(wallView.score.getScore());
                     gameBoard.setShowHighScore(true);
                 }
-
+                wallView.player.widthDecrement();
                 wallView.player.reset(new Point(300,430));
                 wallView.ball.reset(new Point(300,430));
 
@@ -72,6 +72,7 @@ public class WallController{
                 if(levelManager.hasLevel()){
                     wallView.message = "Go to Next Level";
                     gameBoard.gameTimer.stop();
+                    wallView.player.resetWidth();
                     wallView.player.reset(new Point(300,430));
                     wallView.ball.reset(new Point(300,430));
 

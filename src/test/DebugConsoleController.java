@@ -66,13 +66,14 @@ public class DebugConsoleController {
      */
     class ResetBallsListener implements ActionListener {
         /**
-         * Reset the ball's count when the reset ball button is clicked
+         * Reset the ball's count and the player's width when the reset ball button is clicked
          *
          * @param e ActionEvent object
          */
         public void actionPerformed(ActionEvent e) {
             System.out.println("Reset Ball Count");
             wallView.ball.resetBallCount();
+            wallView.player.resetWidth();
         }
 
     }

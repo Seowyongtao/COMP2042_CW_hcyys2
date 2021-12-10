@@ -432,6 +432,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
         else if(restartButtonRect.contains(p)){
             wallView.message = "Restarting Game...";
+            wallView.player.resetWidth();
             wallView.player.reset(new Point(300,430));
             wallView.ball.reset(new Point(300,430));
 
