@@ -40,7 +40,7 @@ public class WallController{
             wallView.getBall().move();
 
             impactManager.findImpacts();
-            wallView.setMessage(String.format("Bricks: %d Balls: %d Score: %d",wallView.getBrickCount().getBrickCount(),wallView.getBall().getCount(), wallView.getScore().getScore()));
+            wallView.setMessage(String.format("Balls: %d Score: %d",wallView.getBall().getCount(), wallView.getScore().getScore()));
 
             if(wallView.getBall().getIsLost()){
 
