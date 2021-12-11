@@ -11,10 +11,9 @@ import java.awt.event.ActionListener;
  */
 public class HomeMenuView extends JPanel {
 
-    private ExitButton exitButton = new ExitButton(150, 250);
-    private StartButton startButton = new StartButton(150, 180);
-    private InfoButton infoButton = new InfoButton(150, 215);
-    private BackGroundImage backGroundImage = new BackGroundImage();
+    private final ExitButton exitButton = new ExitButton(150, 250);
+    private final StartButton startButton = new StartButton(150, 180);
+    private final InfoButton infoButton = new InfoButton(150, 215);
 
     HomeMenuView(){
 
@@ -24,6 +23,7 @@ public class HomeMenuView extends JPanel {
         this.add(startButton);
         this.add(infoButton);
         this.add(exitButton);
+        BackGroundImage backGroundImage = new BackGroundImage();
         this.add(backGroundImage);
     }
 

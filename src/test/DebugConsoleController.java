@@ -14,11 +14,11 @@ import java.awt.event.WindowListener;
  */
 public class DebugConsoleController {
 
-    private DebugConsoleView theView;
-    private WallView wallView;
-    private WallController wallController;
-    private GameBoard gameBoard;
-    private JFrame gameFrame;
+    private final DebugConsoleView theView;
+    private final WallView wallView;
+    private final WallController wallController;
+    private final GameBoard gameBoard;
+    private final JFrame gameFrame;
 
     /**
      * Constructor for DebugConsoleController.
@@ -66,14 +66,14 @@ public class DebugConsoleController {
      */
     class ResetBallsListener implements ActionListener {
         /**
-         * Reset the ball's count and the player's width when the reset ball button is clicked
+         * Reset the ball's count and the paddle's width when the reset ball button is clicked
          *
          * @param e ActionEvent object
          */
         public void actionPerformed(ActionEvent e) {
             System.out.println("Reset Ball Count");
             wallView.getBall().resetBallCount();
-            wallView.getPlayer().resetWidth();
+            wallView.getPaddle().resetWidth();
         }
 
     }
@@ -83,8 +83,8 @@ public class DebugConsoleController {
      */
     class NightModeListener implements  ActionListener{
 
-        private JRadioButton NightModeOn;
-        private JRadioButton NightModeOff;
+        private final JRadioButton NightModeOn;
+        private final JRadioButton NightModeOff;
 
         /**
          * Constructor for NightModeListener
@@ -109,8 +109,8 @@ public class DebugConsoleController {
                 gameBoard.setBgColor(Color.BLACK);
                 wallView.getBall().setInnerColor(new Color(255, 255, 224));
                 wallView.getBall().setBorderColor(new Color(255, 255, 224));
-                wallView.getPlayer().setInnerColor(new Color(144, 238, 144));
-                wallView.getPlayer().setBorderColor(new Color(144, 238, 144));
+                wallView.getPaddle().setInnerColor(new Color(144, 238, 144));
+                wallView.getPaddle().setBorderColor(new Color(144, 238, 144));
                 wallView.setMessageColor(Color.CYAN);
                 wallView.getBlock1().setInnerColor(Color.pink);
                 wallView.getBlock1().setBorderColor(Color.pink);
@@ -121,8 +121,8 @@ public class DebugConsoleController {
                 gameBoard.setBgColor(Color.WHITE);
                 wallView.getBall().setInnerColor(new Color(255, 219, 88));
                 wallView.getBall().setBorderColor(new Color(255, 219, 88).darker().darker());
-                wallView.getPlayer().setInnerColor(Color.GREEN);
-                wallView.getPlayer().setBorderColor(Color.GREEN.darker().darker());
+                wallView.getPaddle().setInnerColor(Color.GREEN);
+                wallView.getPaddle().setBorderColor(Color.GREEN.darker().darker());
                 wallView.setMessageColor(Color.BLUE);
                 wallView.getBlock1().setInnerColor(Color.red);
                 wallView.getBlock1().setBorderColor(Color.red.darker().darker());

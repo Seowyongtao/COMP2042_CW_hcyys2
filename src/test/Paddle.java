@@ -22,16 +22,16 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 /**
- * For setting up the properties of a player
+ * For setting up the properties of a paddle
  */
-public class Player {
+public class Paddle {
 
     private Color borderColor = Color.GREEN.darker().darker();
     private Color innerColor = Color.GREEN;
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
-    private Rectangle playerFace;
+    private Rectangle paddleFace;
     private Point ballPoint;
     private int moveAmount;
     private int min;
@@ -42,21 +42,21 @@ public class Player {
     private Rectangle container;
 
     /**
-     * Constructor for Player
+     * Constructor for Paddle
      *
      * @param ballPoint Starting point of the ball
      * @param width     Value for the width
      * @param height    Value for the height
      * @param container Area of the wall screen
      */
-    public Player(Point ballPoint, int width, int height, Rectangle container) {
+    public Paddle(Point ballPoint, int width, int height, Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
         this.initialWidth = width;
         this.width = width;
         this.height = height;
         this.container = container;
-        playerFace = makeRectangle(this.width, this.height);
+        paddleFace = makeRectangle(this.width, this.height);
         min = container.x + (this.width / 2);
         max = min + container.width - this.width;
 
@@ -68,24 +68,24 @@ public class Player {
     }
 
     /**
-     * To check whether the ball impact with player or not
+     * To check whether the ball impact with paddle or not
      *
      * @param b Ball object
      * @return true/false
      */
     public boolean impact(Ball b) {
-        return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown());
+        return paddleFace.contains(b.getPosition()) && paddleFace.contains(b.getDown());
     }
 
     /**
-     * Move the player according to the moveAmount
+     * Move the paddle according to the moveAmount
      */
     public void move() {
         double x = ballPoint.getX() + moveAmount;
         if (x < min || x > max)
             return;
         ballPoint.setLocation(x, ballPoint.getY());
-        playerFace.setLocation(ballPoint.x - (int) playerFace.getWidth() / 2, ballPoint.y);
+        paddleFace.setLocation(ballPoint.x - (int) paddleFace.getWidth() / 2, ballPoint.y);
     }
 
     /**
@@ -110,26 +110,26 @@ public class Player {
     }
 
     /**
-     * Get the shape of the player
+     * Get the shape of the paddle
      *
-     * @return Shape of the player
+     * @return Shape of the paddle
      */
-    public Shape getPlayerFace() {
-        return playerFace;
+    public Shape getPaddleFace() {
+        return paddleFace;
     }
 
     /**
-     * Move player to give point
+     * Move paddle to give point
      *
      * @param p Point object
      */
     public void moveTo(Point p) {
         ballPoint.setLocation(p);
-        playerFace.setLocation(ballPoint.x - (int) playerFace.getWidth() / 2, ballPoint.y);
+        paddleFace.setLocation(ballPoint.x - (int) paddleFace.getWidth() / 2, ballPoint.y);
     }
 
     /**
-     * Move player back to the starting point
+     * Move paddle back to the starting point
      *
      * @param startingPoint Starting point
      */
@@ -138,25 +138,25 @@ public class Player {
     }
 
     /**
-     * Get the current inner color of the player
+     * Get the current inner color of the paddle
      *
-     * @return Current inner color of the player
+     * @return Current inner color of the paddle
      */
     public Color getInnerColor() {
         return innerColor;
     }
 
     /**
-     * Get the current border color of the player
+     * Get the current border color of the paddle
      *
-     * @return Current border color of the player
+     * @return Current border color of the paddle
      */
     public Color getBorderColor() {
         return borderColor;
     }
 
     /**
-     * Update the inner color of the player
+     * Update the inner color of the paddle
      *
      * @param color New inner color
      */
@@ -165,7 +165,7 @@ public class Player {
     }
 
     /**
-     * Update the border color of the player
+     * Update the border color of the paddle
      *
      * @param color New border color
      */
@@ -207,7 +207,7 @@ public class Player {
         this.width = this.width - 25;
         min = container.x + (this.width / 2);
         max = min + container.width - this.width;
-        playerFace = makeRectangle(width, height);
+        paddleFace = makeRectangle(width, height);
     }
 
     /**
@@ -217,7 +217,7 @@ public class Player {
         this.width = initialWidth;
         min = container.x + (this.width / 2);
         max = min + container.width - this.width;
-        playerFace = makeRectangle(width, height);
+        paddleFace = makeRectangle(width, height);
     }
 
 }

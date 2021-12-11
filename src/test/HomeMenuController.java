@@ -9,8 +9,7 @@ import java.awt.event.ActionListener;
  */
 public class HomeMenuController {
 
-    private HomeMenuView theView;
-    private GameFrame owner;
+    private final GameFrame owner;
 
     /**
      * Constructor for HomeMenu Controller.
@@ -20,12 +19,11 @@ public class HomeMenuController {
      */
     public HomeMenuController(HomeMenuView theView, GameFrame owner){
 
-        this.theView = theView;
         this.owner = owner;
 
-        this.theView.addExitListener(new ExitListener());
-        this.theView.addStartListener(new StartListener());
-        this.theView.addInfoListener(new InfoListener());
+        theView.addExitListener(new ExitListener());
+        theView.addStartListener(new StartListener());
+        theView.addInfoListener(new InfoListener());
 
     }
 

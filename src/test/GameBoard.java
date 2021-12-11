@@ -44,7 +44,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private boolean showPauseMenu;
     private boolean showHighScore;
 
-    private Font menuFont;
+    private final Font menuFont;
 
     private Rectangle continueButtonRect;
     private Rectangle exitButtonRect;
@@ -52,16 +52,16 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private int strLen;
 
-    private DebugConsoleView debugConsoleView;
-    private DebugConsoleController debugConsoleController;
-    private WallView wallView;
-    private WallController wallController;
+    private final DebugConsoleView debugConsoleView;
+    private final DebugConsoleController debugConsoleController;
+    private final WallView wallView;
+    private final WallController wallController;
     public  Timer gameTimer;
 
     /**
      * Constructor for GameBoard
      *
-     * @param owner Jframe object
+     * @param owner JFrame object
      */
     public GameBoard(JFrame owner){
         super();
@@ -92,7 +92,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
     /**
-     * Draw ball, bricks, player, blocks, pause menu, high score board
+     * Draw ball, bricks, paddle, blocks, pause menu, high score board
      *
      * @param g Graphics object
      */
@@ -111,7 +111,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(wallView.getPlayer(),g2d);
+        drawPaddle(wallView.getPaddle(),g2d);
         drawBlock(wallView.getBlock1(), wallView.getBlock2(), g2d);
 
         if(showPauseMenu)
@@ -156,10 +156,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawPlayer(Player p,Graphics2D g2d){
+    private void drawPaddle(Paddle p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
-        Shape s = p.getPlayerFace();
+        Shape s = p.getPaddleFace();
         g2d.setColor(p.getInnerColor());
         g2d.fill(s);
 
@@ -364,8 +364,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
     /**
-     * Press A to move the player left <br>
-     * Press D to move the player right <br>
+     * Press A to move the paddle left <br>
+     * Press D to move the paddle right <br>
      * Press ESC to show pause menu <br>
      * Press SPACE to pause or resume the game <br>
      * Press ALT + SHIFT + F1 to show debug console
@@ -376,10 +376,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                wallView.getPlayer().moveLeft();
+                wallView.getPaddle().moveLeft();
                 break;
             case KeyEvent.VK_D:
-                wallView.getPlayer().movRight();
+                wallView.getPaddle().movRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 if(showHighScore){
@@ -400,18 +400,18 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
                     debugConsoleView.setVisible(true);
             default:
-                wallView.getPlayer().stop();
+                wallView.getPaddle().stop();
         }
     }
 
     /**
-     * Stop the player when the key is released
+     * Stop the paddle when the key is released
      *
      * @param keyEvent keyEvent object
      */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        wallView.getPlayer().stop();
+        wallView.getPaddle().stop();
     }
 
     /**
@@ -432,8 +432,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
         else if(restartButtonRect.contains(p)){
             wallView.setMessage("Restarting Game...");
-            wallView.getPlayer().resetWidth();
-            wallView.getPlayer().reset(new Point(300,430));
+            wallView.getPaddle().resetWidth();
+            wallView.getPaddle().reset(new Point(300,430));
             wallView.getBall().reset(new Point(300,430));
 
             if(wallController.getLevelManager().getLevel()==5 || wallController.getLevelManager().getLevel()==6){
@@ -480,7 +480,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     /**
      * Change the cursor's looks to hand if the cursor points at CONTINUE, RESTART, EXIT
      *
-     * @param mouseEvent
+     * @param mouseEvent MouseEvent object
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {

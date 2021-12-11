@@ -2,14 +2,13 @@ package test;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-
 /**
- * For handling all the logics that are related to the impact between ball, wall, player and brick
+ * For handling all the logics that are related to the impact between ball, wall, paddle and brick
  */
 public class ImpactManager {
 
-    private WallView wall;
-    private Rectangle area;
+    private final WallView wall;
+    private final Rectangle area;
 
     /**
      * Constructor for ImpactManager
@@ -25,15 +24,15 @@ public class ImpactManager {
     }
 
     /**
-     * If the ball impact with the player, reverse the ball's Y value <br>
+     * If the ball impact with the paddle, reverse the ball's Y value <br>
      * If the ball impact with the brick, increase the score by 10 and decrement brick count by 1<br>
      * If the ball impact with the side border, reverse the ball's X value <br>
      * If the ball impact with the upper side border, reverse the ball's Y value <br>
-     * If the ball go beyong the down side border, decrement ball count by 1, decrement score by 10, and set ball's islost to true
+     * If the ball go beyond the downside border, decrement ball count by 1, decrement score by 10, and set ball's islost to true
      *
      */
     public void findImpacts(){
-        if(wall.getPlayer().impact(wall.getBall())){
+        if(wall.getPaddle().impact(wall.getBall())){
             wall.getBall().reverseY();
         }
         else if(impactWall()){
@@ -65,22 +64,26 @@ public class ImpactManager {
 
     private boolean impactWall(){
         for(Brick b : wall.getBricks()){
-            switch(b.findImpact(wall.getBall())) {
+            switch (b.findImpact(wall.getBall())) {
                 //Vertical Impact
-                case Brick.UP_IMPACT:
+                case Brick.UP_IMPACT -> {
                     wall.getBall().reverseY();
                     return b.setImpact(wall.getBall().getDown(), Brick.Crack.UP);
-                case Brick.DOWN_IMPACT:
+                }
+                case Brick.DOWN_IMPACT -> {
                     wall.getBall().reverseY();
-                    return b.setImpact(wall.getBall().getUp(),Brick.Crack.DOWN);
+                    return b.setImpact(wall.getBall().getUp(), Brick.Crack.DOWN);
+                }
 
                 //Horizontal Impact
-                case Brick.LEFT_IMPACT:
+                case Brick.LEFT_IMPACT -> {
                     wall.getBall().reverseX();
-                    return b.setImpact(wall.getBall().getRight(),Brick.Crack.RIGHT);
-                case Brick.RIGHT_IMPACT:
+                    return b.setImpact(wall.getBall().getRight(), Brick.Crack.RIGHT);
+                }
+                case Brick.RIGHT_IMPACT -> {
                     wall.getBall().reverseX();
-                    return b.setImpact(wall.getBall().getLeft(),Brick.Crack.LEFT);
+                    return b.setImpact(wall.getBall().getLeft(), Brick.Crack.LEFT);
+                }
             }
         }
         return false;

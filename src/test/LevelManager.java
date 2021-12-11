@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class LevelManager {
 
-    private WallView wall;
+    private final WallView wall;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
@@ -15,7 +15,7 @@ public class LevelManager {
 
     private static final int LEVELS_COUNT = 6;
 
-    private Brick[][] levels;
+    private final Brick[][] levels;
     private int level;
 
     /**
@@ -159,13 +159,13 @@ public class LevelManager {
     }
 
     /**
-     * Up level by one, set the brick count to its initial value, and reset the width of the player as well<br>
+     * Up level by one, set the brick count to its initial value, and reset the width of the paddle as well<br>
      * If it is level 5 or level 6, make block1 and block2 visible and set the ball's XSpeed and YSpeed to 4
      */
     public void nextLevel(){
         wall.setBricks(levels[level++]);
         wall.getBrickCount().setBrickCount(wall.getBricks().length);
-        wall.getPlayer().resetWidth();
+        wall.getPaddle().resetWidth();
 
         if (level == 5 || level == 6){
             wall.getBlock1().setVisible();

@@ -18,7 +18,6 @@
 package test;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.util.Random;
 
 
@@ -29,7 +28,7 @@ public class Wall {
 
     Brick[] bricks;
     Ball ball;
-    Player player;
+    Paddle player;
     ImpactManager impactManager;
     LevelManager levelManager;
     BrickCount brickCount;
@@ -44,7 +43,7 @@ public class Wall {
 
         ball = new RubberBall(ballPos);
 
-        player = new Player((Point) ballPos.clone(),150,10, drawArea);
+        player = new Paddle((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
 

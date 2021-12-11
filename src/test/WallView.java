@@ -18,17 +18,16 @@
 package test;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
- * Responsible for creating objects that are related to the game such as ball, bricks, player for GameBoard to draw
+ * Responsible for creating objects that are related to the game such as ball, bricks, paddle for GameBoard to draw
  */
 public class WallView{
 
     private final Rectangle area;
     private Brick[] bricks;
     private final Ball ball;
-    private final Player player;
+    private final Paddle paddle;
     private final BrickCount brickCount;
     private String message;
     private Color messageColor;
@@ -52,7 +51,7 @@ public class WallView{
         block1 = new Block(120, 190, 80,10);
         block2 = new Block(390, 140, 80,10);
 
-        player = new Player((Point) ballPos.clone(),150,10, drawArea);
+        paddle = new Paddle((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
 
@@ -98,12 +97,12 @@ public class WallView{
     }
 
     /**
-     * Get the player object
+     * Get the Paddle object
      *
-     * @return Player object
+     * @return Paddle object
      */
-    public Player getPlayer(){
-        return player;
+    public Paddle getPaddle(){
+        return paddle;
     }
 
     /**

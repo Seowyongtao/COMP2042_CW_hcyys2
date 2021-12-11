@@ -12,15 +12,14 @@ import java.awt.event.WindowListener;
  */
 public class DebugConsoleView extends JDialog implements WindowListener {
 
-    private JButton skipLevel;
-    private JButton resetBalls;
+    private final JButton skipLevel;
+    private final JButton resetBalls;
 
-    private JSlider ballXSpeed;
-    private JSlider ballYSpeed;
+    private final JSlider ballXSpeed;
+    private final JSlider ballYSpeed;
 
-    private JRadioButton nightModeOn;
-    private JRadioButton nightModeOff;
-    private ButtonGroup nightMode;
+    private final JRadioButton nightModeOn;
+    private final JRadioButton nightModeOff;
 
     /**
      * Constructor for DebugConsoleView
@@ -37,13 +36,13 @@ public class DebugConsoleView extends JDialog implements WindowListener {
         skipLevel = makeButton("Skip Level");
         resetBalls = makeButton("Reset Balls");
 
-        ballXSpeed = makeSlider(-4,4);
-        ballYSpeed = makeSlider(-4,4);
+        ballXSpeed = makeSlider();
+        ballYSpeed = makeSlider();
 
         nightModeOn = makeRadioButton("NIGHT MODE ON");
         nightModeOff = makeRadioButton("NIGHT MODE OFF");
 
-        nightMode = makeButtonGroup();
+        ButtonGroup nightMode = makeButtonGroup();
         nightMode.add(nightModeOn);
         nightMode.add(nightModeOff);
 
@@ -70,12 +69,11 @@ public class DebugConsoleView extends JDialog implements WindowListener {
     }
 
     private JButton makeButton(String title){
-        JButton out = new JButton(title);
-        return  out;
+        return new JButton(title);
     }
 
-    private JSlider makeSlider(int min, int max){
-        JSlider out = new JSlider(min,max);
+    private JSlider makeSlider(){
+        JSlider out = new JSlider(-4, 4);
         out.setMajorTickSpacing(1);
         out.setSnapToTicks(true);
         out.setPaintTicks(true);
@@ -83,13 +81,11 @@ public class DebugConsoleView extends JDialog implements WindowListener {
     }
 
     private JRadioButton makeRadioButton(String title){
-        JRadioButton out = new JRadioButton(title);
-        return out;
+        return new JRadioButton(title);
     }
 
     private ButtonGroup makeButtonGroup(){
-        ButtonGroup out = new ButtonGroup();
-        return out;
+        return new ButtonGroup();
     }
 
     /**

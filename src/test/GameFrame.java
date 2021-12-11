@@ -31,11 +31,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
-    private GameBoard gameBoard;
-    private HomeMenuView homeMenuView;
-    private HomeMenuController homeMenuController;
-    private InfoView infoView;
-    private InfoController infoContoller;
+    private final GameBoard gameBoard;
+    private final HomeMenuView homeMenuView;
+    private final InfoView infoView;
 
     /**
      * Constructor for GameFrame.
@@ -46,12 +44,12 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = false;
 
         homeMenuView = new HomeMenuView();
-        homeMenuController = new HomeMenuController(homeMenuView, this);
+        HomeMenuController homeMenuController = new HomeMenuController(homeMenuView, this);
         this.add(homeMenuView);
         this.setVisible(true);
 
         infoView = new InfoView();
-        infoContoller = new InfoController(infoView, this);
+        InfoController infoContoller = new InfoController(infoView, this);
         gameBoard = new GameBoard(this);
     }
 
