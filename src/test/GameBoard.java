@@ -35,22 +35,18 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final String PAUSE = "Pause Menu";
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
-
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
+    private static Color bgColor = Color.WHITE;
 
-    private static Color bgColor = Color.WHITE; //new
-
+    private int strLen;
     private boolean showPauseMenu;
     private boolean showHighScore;
-
     private final Font menuFont;
 
     private Rectangle continueButtonRect;
     private Rectangle exitButtonRect;
     private Rectangle restartButtonRect;
-
-    private int strLen;
 
     private final DebugConsoleView debugConsoleView;
     private final DebugConsoleController debugConsoleController;
@@ -64,12 +60,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      * @param owner JFrame object
      */
     public GameBoard(JFrame owner){
-        super();
 
+        super();
         strLen = 0;
         showPauseMenu = false;
         showHighScore = false;
-
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 
         this.initialize();
@@ -78,7 +73,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         debugConsoleView = new DebugConsoleView();
         debugConsoleController = new DebugConsoleController(debugConsoleView, owner, wallView, wallController, this);
-
 
     }
 
@@ -115,7 +109,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         drawBlock(wallView.getBlock1(), wallView.getBlock2(), g2d);
 
         if(showPauseMenu)
-            drawMenu(g2d);
+            drawObscurePauseMenu(g2d);
 
         if(showHighScore)
             drawObscureHighScoreBoard(g2d, wallController.getScoreList().getHighScoreList());
@@ -189,14 +183,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawMenu(Graphics2D g2d){
+    private void drawObscurePauseMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
     private void drawObscureHighScoreBoard(Graphics2D g2d, ArrayList<Integer> top3ScoreList){
         obscureGameBoard(g2d);
-        drawHighScore(g2d, top3ScoreList);
+        drawHighScoreBoard(g2d, top3ScoreList);
     }
 
     private void obscureGameBoard(Graphics2D g2d){
@@ -215,6 +209,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
     private void drawPauseMenu(Graphics2D g2d){
+
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
 
@@ -264,7 +259,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
-    private void drawHighScore(Graphics2D g2d, ArrayList<Integer> top3ScoreList){
+    private void drawHighScoreBoard(Graphics2D g2d, ArrayList<Integer> top3ScoreList){
 
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
@@ -374,6 +369,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
                 wallView.getPaddle().moveLeft();
@@ -401,6 +397,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     debugConsoleView.setVisible(true);
             default:
                 wallView.getPaddle().stop();
+
         }
     }
 
@@ -423,14 +420,18 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
+
         Point p = mouseEvent.getPoint();
+
         if(!showPauseMenu)
             return;
+
         if(continueButtonRect.contains(p)){
             showPauseMenu = false;
             repaint();
         }
         else if(restartButtonRect.contains(p)){
+
             wallView.setMessage("Restarting Game...");
             wallView.getPaddle().resetWidth();
             wallView.getPaddle().reset(new Point(300,430));
@@ -445,6 +446,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wallController.wallReset();
             showPauseMenu = false;
             repaint();
+
         }
         else if(exitButtonRect.contains(p)){
             System.exit(0);
@@ -484,12 +486,16 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
+
         Point p = mouseEvent.getPoint();
+
         if(exitButtonRect != null && showPauseMenu) {
+
             if (exitButtonRect.contains(p) || continueButtonRect.contains(p) || restartButtonRect.contains(p))
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             else
                 this.setCursor(Cursor.getDefaultCursor());
+
         }
         else{
             this.setCursor(Cursor.getDefaultCursor());

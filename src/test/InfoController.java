@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
  */
 public class InfoController {
 
-    private InfoView theView;
-    private GameFrame owner;
+    private final InfoView theView;
+    private final GameFrame owner;
 
     /**
      * Constructor for InfoController

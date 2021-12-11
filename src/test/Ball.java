@@ -48,7 +48,6 @@ abstract public class Ball {
 
         up.setLocation(center.getX(),center.getY()-(radiusB / 2));
         down.setLocation(center.getX(),center.getY()+(radiusB / 2));
-
         left.setLocation(center.getX()-(radiusA /2),center.getY());
         right.setLocation(center.getX()+(radiusA /2),center.getY());
 
@@ -77,7 +76,6 @@ abstract public class Ball {
 
         tmp.setFrame((center.getX() -(w / 2)),(center.getY() - (h / 2)),w,h);
         setPoints(w,h);
-
 
         ballFace = tmp;
     }
@@ -135,6 +133,15 @@ abstract public class Ball {
     }
 
     /**
+     * Update border color
+     *
+     * @param color New border color
+     */
+    public void setBorderColor(Color color){
+        border = color;
+    }
+
+    /**
      * Get the current inner color
      *
      * @return Current inner color
@@ -150,15 +157,6 @@ abstract public class Ball {
      */
     public void setInnerColor(Color color){
         inner = color;
-    }
-
-    /**
-     * Update border color
-     *
-     * @param color New border color
-     */
-    public void setBorderColor(Color color){
-        border = color;
     }
 
     /**

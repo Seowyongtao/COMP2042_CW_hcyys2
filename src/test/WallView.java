@@ -24,13 +24,13 @@ import java.awt.*;
  */
 public class WallView{
 
-    private final Rectangle area;
     private Brick[] bricks;
+    private String message;
+    private Color messageColor;
+    private final Rectangle area;
     private final Ball ball;
     private final Paddle paddle;
     private final BrickCount brickCount;
-    private String message;
-    private Color messageColor;
     private final Score score;
     private final Block block1;
     private final Block block2;
@@ -45,19 +45,14 @@ public class WallView{
 
         message ="";
         messageColor = Color.BLUE;
-
         ball = new RubberBall(ballPos);
-
         block1 = new Block(120, 190, 80,10);
         block2 = new Block(390, 140, 80,10);
-
         paddle = new Paddle((Point) ballPos.clone(),150,10, drawArea);
-
         area = drawArea;
-
         brickCount = new BrickCount(30);
-
         score = new Score();
+
     }
 
     /**
@@ -176,7 +171,6 @@ public class WallView{
     public Block getBlock2(){
         return block2;
     }
-
 
 }
 

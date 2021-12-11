@@ -32,14 +32,14 @@ public class Paddle {
     private static final int DEF_MOVE_AMOUNT = 5;
 
     private Rectangle paddleFace;
-    private Point ballPoint;
+    private final Point ballPoint;
     private int moveAmount;
     private int min;
     private int max;
-    private int initialWidth;
+    private final int initialWidth;
     private int width;
-    private int height;
-    private Rectangle container;
+    private final int height;
+    private final Rectangle container;
 
     /**
      * Constructor for Paddle
@@ -50,8 +50,8 @@ public class Paddle {
      * @param container Area of the wall screen
      */
     public Paddle(Point ballPoint, int width, int height, Rectangle container) {
-        this.ballPoint = ballPoint;
         moveAmount = 0;
+        this.ballPoint = ballPoint;
         this.initialWidth = width;
         this.width = width;
         this.height = height;
@@ -59,7 +59,6 @@ public class Paddle {
         paddleFace = makeRectangle(this.width, this.height);
         min = container.x + (this.width / 2);
         max = min + container.width - this.width;
-
     }
 
     private Rectangle makeRectangle(int width, int height) {

@@ -9,13 +9,12 @@ public class Block {
 
     private Color borderColor = Color.red.darker().darker();
     private Color innerColor = Color.red;
-
     private Rectangle blockFace;
-    private int xPosition;
-    private int yPosition;
-    private int width;
-    private int height;
     private int moveAmount;
+    private int xPosition;
+    private final int yPosition;
+    private final int width;
+    private final int height;
 
     /**
      * Constructor for Block

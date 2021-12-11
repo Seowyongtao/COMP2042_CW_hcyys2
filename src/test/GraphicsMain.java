@@ -29,7 +29,6 @@ public class GraphicsMain {
      * @param args Stores the incoming command line arguments for the program.
      */
     public static void main(String[] args){
-//        EventQueue.invokeLater(() -> new GameFrame().initialize());
         EventQueue.invokeLater(GameFrame::new);
     }
 

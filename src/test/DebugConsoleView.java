@@ -140,6 +140,26 @@ public class DebugConsoleView extends JDialog implements WindowListener {
     }
 
     /**
+     * Add ChangeListener to ballXSpeed
+     *
+     * @param listenForBallXSpeedSlider ChangeListener object
+     */
+    public void addBallXSpeedListener(ChangeListener listenForBallXSpeedSlider){
+
+        ballXSpeed.addChangeListener(listenForBallXSpeedSlider);
+    }
+
+    /**
+     * Add ChangeListener to ballYSpeed
+     *
+     * @param listenForBallYSpeedSlider ChangeListener object
+     */
+    public void addBallYSpeedListener(ChangeListener listenForBallYSpeedSlider){
+
+        ballYSpeed.addChangeListener(listenForBallYSpeedSlider);
+    }
+
+    /**
      * Get JRadioButton object nightModeOn
      *
      * @return JRadioButton object nightModeOn
@@ -166,26 +186,6 @@ public class DebugConsoleView extends JDialog implements WindowListener {
 
         nightModeOn.addActionListener(listenForNightModeRadioButtons);
         nightModeOff.addActionListener(listenForNightModeRadioButtons);
-    }
-
-    /**
-     * Add ChangeListener to ballXSpeed
-     *
-     * @param listenForBallXSpeedSlider ChangeListener object
-     */
-    public void addBallXSpeedListener(ChangeListener listenForBallXSpeedSlider){
-
-        ballXSpeed.addChangeListener(listenForBallXSpeedSlider);
-    }
-
-    /**
-     * Add ChangeListener to ballYSpeed
-     *
-     * @param listenForBallYSpeedSlider ChangeListener object
-     */
-    public void addBallYSpeedListener(ChangeListener listenForBallYSpeedSlider){
-
-        ballYSpeed.addChangeListener(listenForBallYSpeedSlider);
     }
 
     /**

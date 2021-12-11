@@ -8,18 +8,17 @@ import java.awt.event.ActionListener;
  */
 public class InfoView extends JPanel {
 
-    private InfoImage infoImage = new InfoImage();
-    private OkButton okButton = new OkButton(150, 255);
+    private final OkButton okButton = new OkButton(150, 255);
 
     /**
      * Constructor for InfoView
      */
     public InfoView(){
-
         this.setBounds(0,0, 450,301);
         this.setLayout(null);
 
         this.add(okButton);
+        InfoImage infoImage = new InfoImage();
         this.add(infoImage);
     }
 

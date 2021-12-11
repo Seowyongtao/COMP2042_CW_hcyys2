@@ -50,17 +50,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         infoView = new InfoView();
         InfoController infoContoller = new InfoController(infoView, this);
+
         gameBoard = new GameBoard(this);
     }
-
-    //old code
-//    public void initialize(){
-//        this.setTitle(DEF_TITLE);
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//        this.pack();
-//        this.autoLocate();
-//        this.setVisible(true);
-//    }
 
     /**
      * Initialize the initial properties of frame.

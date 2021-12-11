@@ -29,7 +29,6 @@ public class WallController{
         levelManager = new LevelManager(wallView,wallView.getArea(), wallView.getBrickCount().getBrickCount(), lineCount, brickDimensionRatio);
 
         levelManager.nextLevel();
-
         gameBoard.gameTimer = new Timer(10, e ->{
 
             if(levelManager.getLevel() == 6){
@@ -39,8 +38,10 @@ public class WallController{
 
             wallView.getPaddle().move();
             wallView.getBall().move();
+
             impactManager.findImpacts();
             wallView.setMessage(String.format("Bricks: %d Balls: %d Score: %d",wallView.getBrickCount().getBrickCount(),wallView.getBall().getCount(), wallView.getScore().getScore()));
+
             if(wallView.getBall().getIsLost()){
 
                 if(wallView.getBall().getCount() == 0){
@@ -50,6 +51,7 @@ public class WallController{
                     scoreList = new ScoreList(wallView.getScore().getScore());
                     gameBoard.setShowHighScore(true);
                 }
+
                 wallView.getPaddle().widthDecrement();
                 wallView.getPaddle().reset(new Point(300,430));
                 wallView.getBall().reset(new Point(300,430));

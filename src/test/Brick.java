@@ -37,12 +37,10 @@ abstract public class Brick  {
         public static final int VERTICAL = 100;
         public static final int HORIZONTAL = 200;
 
+        private final GeneralPath crack;
 
-
-        private GeneralPath crack;
-
-        private int crackDepth;
-        private int steps;
+        private final int crackDepth;
+        private final int steps;
 
         /**
          * Constructor for Crack
@@ -172,15 +170,15 @@ abstract public class Brick  {
             Point out = new Point();
             int pos;
 
-            switch(direction){
-                case HORIZONTAL:
+            switch (direction) {
+                case HORIZONTAL -> {
                     pos = rnd.nextInt(to.x - from.x) + from.x;
-                    out.setLocation(pos,to.y);
-                    break;
-                case VERTICAL:
+                    out.setLocation(pos, to.y);
+                }
+                case VERTICAL -> {
                     pos = rnd.nextInt(to.y - from.y) + from.y;
-                    out.setLocation(to.x,pos);
-                    break;
+                    out.setLocation(to.x, pos);
+                }
             }
             return out;
         }
@@ -189,13 +187,12 @@ abstract public class Brick  {
 
     private static Random rnd;
 
-    private String name;
-    private Shape brickFace;
+    private final Shape brickFace;
 
-    private Color border;
-    private Color inner;
+    private final Color border;
+    private final Color inner;
 
-    private int fullStrength;
+    private final int fullStrength;
     private int strength;
 
     private boolean broken;
@@ -213,7 +210,6 @@ abstract public class Brick  {
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();
         broken = false;
-        this.name = name;
         brickFace = makeBrickFace(pos,size);
         this.border = border;
         this.inner = inner;
