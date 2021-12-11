@@ -8,11 +8,10 @@ import java.awt.*;
  */
 public class WallController{
 
-    private WallView wallView;
-    private GameBoard gameBoard;
-    private ImpactManager impactManager;
+    private final WallView wallView;
+    private final ImpactManager impactManager;
     private ScoreList scoreList;
-    LevelManager levelManager;
+    private final LevelManager levelManager;
 
     /**
      * Constructor for WallController
@@ -25,70 +24,69 @@ public class WallController{
     public WallController(WallView wallView, GameBoard gameBoard, int lineCount, double brickDimensionRatio){
 
         this.wallView = wallView;
-        this.gameBoard = gameBoard;
 
-        impactManager = new ImpactManager(wallView,wallView.area);
-        levelManager = new LevelManager(wallView,wallView.area, wallView.brickCount.getBrickCount(), lineCount, brickDimensionRatio);
+        impactManager = new ImpactManager(wallView,wallView.getArea());
+        levelManager = new LevelManager(wallView,wallView.getArea(), wallView.getBrickCount().getBrickCount(), lineCount, brickDimensionRatio);
 
         levelManager.nextLevel();
 
         gameBoard.gameTimer = new Timer(10, e ->{
 
             if(levelManager.getLevel() == 6){
-                wallView.block1.move();
-                wallView.block2.move();
+                wallView.getBlock1().move();
+                wallView.getBlock2().move();
             }
 
-            wallView.player.move();
-            wallView.ball.move();
+            wallView.getPlayer().move();
+            wallView.getBall().move();
             impactManager.findImpacts();
-            wallView.message = String.format("Bricks: %d Balls: %d Score: %d",wallView.brickCount.getBrickCount(),wallView.ball.getCount(), wallView.score.getScore());
-            if(wallView.ball.getIsLost()){
+            wallView.setMessage(String.format("Bricks: %d Balls: %d Score: %d",wallView.getBrickCount().getBrickCount(),wallView.getBall().getCount(), wallView.getScore().getScore()));
+            if(wallView.getBall().getIsLost()){
 
-                if(wallView.ball.getCount() == 0){
+                if(wallView.getBall().getCount() == 0){
                     wallReset();
-                    wallView.message = "Game over";
+                    wallView.setMessage("Game Over");
 
-                    scoreList = new ScoreList(wallView.score.getScore());
+                    scoreList = new ScoreList(wallView.getScore().getScore());
                     gameBoard.setShowHighScore(true);
                 }
-                wallView.player.widthDecrement();
-                wallView.player.reset(new Point(300,430));
-                wallView.ball.reset(new Point(300,430));
+                wallView.getPlayer().widthDecrement();
+                wallView.getPlayer().reset(new Point(300,430));
+                wallView.getBall().reset(new Point(300,430));
 
                 if(levelManager.getLevel()==5 || levelManager.getLevel()==6){
-                    wallView.ball.setXSpeed(3);
-                    wallView.ball.setYSpeed(-3);
+                    wallView.getBall().setXSpeed(3);
+                    wallView.getBall().setYSpeed(-3);
                 }
 
                 gameBoard.gameTimer.stop();
             }
-            else if(wallView.brickCount.getBrickCount() == 0){
+            else if(wallView.getBrickCount().getBrickCount() == 0){
 
-                if(wallView.ball.getCount() == 3){
-                    wallView.score.scoreIncrement(30);
+                if(wallView.getBall().getCount() == 3){
+                    wallView.getScore().scoreIncrement(30);
                 }
 
                 if(levelManager.hasLevel()){
-                    wallView.message = "Go to Next Level";
+                    wallView.setMessage("Go to Next Level");
                     gameBoard.gameTimer.stop();
-                    wallView.player.resetWidth();
-                    wallView.player.reset(new Point(300,430));
-                    wallView.ball.reset(new Point(300,430));
+                    wallView.getPlayer().resetWidth();
+                    wallView.getPlayer().reset(new Point(300,430));
+                    wallView.getBall().reset(new Point(300,430));
 
                     if(levelManager.getLevel()==5 || levelManager.getLevel()==6){
-                        wallView.ball.setXSpeed(3);
-                        wallView.ball.setYSpeed(-3);
+                        wallView.getBall().setXSpeed(3);
+                        wallView.getBall().setYSpeed(-3);
                     }
 
                     wallReset();
                     levelManager.nextLevel();
                 }
                 else{
-                    wallView.message = "ALL WALLS DESTROYED";
+                    wallView.setMessage("ALL WALLS DESTROYED");
                     gameBoard.gameTimer.stop();
 
-                    scoreList = new ScoreList(wallView.score.getScore());
+                    scoreList = new ScoreList(wallView.getScore().getScore());
                     gameBoard.setShowHighScore(true);
                 }
             }
@@ -103,10 +101,10 @@ public class WallController{
      */
     public void wallReset(){
 
-        for(Brick b : wallView.bricks)
+        for(Brick b : wallView.getBricks())
             b.repair();
-        wallView.brickCount.setBrickCount(wallView.bricks.length);
-        wallView.ball.setCount(3);
+        wallView.getBrickCount().setBrickCount(wallView.getBricks().length);
+        wallView.getBall().setCount(3);
 
     }
 
@@ -117,6 +115,15 @@ public class WallController{
      */
     public ScoreList getScoreList(){
         return this.scoreList;
+    }
+
+    /**
+     * Get LevelManager object
+     *
+     * @return LevelManager object
+     */
+    public LevelManager getLevelManager(){
+        return levelManager;
     }
 
 }

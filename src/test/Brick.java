@@ -190,7 +190,7 @@ abstract public class Brick  {
     private static Random rnd;
 
     private String name;
-    Shape brickFace;
+    private Shape brickFace;
 
     private Color border;
     private Color inner;
@@ -269,13 +269,13 @@ abstract public class Brick  {
         if(broken)
             return 0;
         int out  = 0;
-        if(brickFace.contains(b.right))
+        if(brickFace.contains(b.getRight()))
             out = LEFT_IMPACT;
-        else if(brickFace.contains(b.left))
+        else if(brickFace.contains(b.getLeft()))
             out = RIGHT_IMPACT;
-        else if(brickFace.contains(b.up))
+        else if(brickFace.contains(b.getUp()))
             out = DOWN_IMPACT;
-        else if(brickFace.contains(b.down))
+        else if(brickFace.contains(b.getDown()))
             out = UP_IMPACT;
         return out;
     }
@@ -312,6 +312,9 @@ abstract public class Brick  {
      */
     public int getStrength(){return strength;}
 
+    public Shape getBrickFace(){
+        return brickFace;
+    }
 
 
 }

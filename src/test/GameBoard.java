@@ -102,17 +102,17 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         clear(g2d);
 
-        g2d.setColor(wallView.messageColor);
-        g2d.drawString(wallView.message,250,225);
+        g2d.setColor(wallView.getMessageColor());
+        g2d.drawString(wallView.getMessage(),250,225);
 
-        drawBall(wallView.ball,g2d);
+        drawBall(wallView.getBall(),g2d);
 
-        for(Brick b : wallView.bricks)
+        for(Brick b : wallView.getBricks())
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(wallView.player,g2d);
-        drawBlock(wallView.block1, wallView.block2, g2d);
+        drawPlayer(wallView.getPlayer(),g2d);
+        drawBlock(wallView.getBlock1(), wallView.getBlock2(), g2d);
 
         if(showPauseMenu)
             drawMenu(g2d);
@@ -325,7 +325,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         x = (this.getWidth() - strLen) / 3;
         y *= 1.25;
 
-        String playerScore = "YOUR SCORE: " + this.wallView.score.getScore();
+        String playerScore = "YOUR SCORE: " + this.wallView.getScore().getScore();
         g2d.drawString(playerScore,x,y);
 
         g2d.setFont(tmpFont);
@@ -355,7 +355,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     public void onLostFocus(){
         gameTimer.stop();
-        wallView.message = "Focus Lost";
+        wallView.setMessage("Focus Lost");
         repaint();
     }
 
@@ -376,10 +376,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                wallView.player.moveLeft();
+                wallView.getPlayer().moveLeft();
                 break;
             case KeyEvent.VK_D:
-                wallView.player.movRight();
+                wallView.getPlayer().movRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 if(showHighScore){
@@ -400,7 +400,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
                     debugConsoleView.setVisible(true);
             default:
-                wallView.player.stop();
+                wallView.getPlayer().stop();
         }
     }
 
@@ -411,7 +411,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        wallView.player.stop();
+        wallView.getPlayer().stop();
     }
 
     /**
@@ -431,17 +431,17 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             repaint();
         }
         else if(restartButtonRect.contains(p)){
-            wallView.message = "Restarting Game...";
-            wallView.player.resetWidth();
-            wallView.player.reset(new Point(300,430));
-            wallView.ball.reset(new Point(300,430));
+            wallView.setMessage("Restarting Game...");
+            wallView.getPlayer().resetWidth();
+            wallView.getPlayer().reset(new Point(300,430));
+            wallView.getBall().reset(new Point(300,430));
 
-            if(wallController.levelManager.getLevel()==5 || wallController.levelManager.getLevel()==6){
-                wallView.ball.setXSpeed(4);
-                wallView.ball.setYSpeed(-4);
+            if(wallController.getLevelManager().getLevel()==5 || wallController.getLevelManager().getLevel()==6){
+                wallView.getBall().setXSpeed(4);
+                wallView.getBall().setYSpeed(-4);
             }
 
-            wallView.score.reset();
+            wallView.getScore().reset();
             wallController.wallReset();
             showPauseMenu = false;
             repaint();

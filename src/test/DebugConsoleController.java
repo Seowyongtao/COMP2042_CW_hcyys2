@@ -56,7 +56,7 @@ public class DebugConsoleController {
          * @param e ActionEvent object
          */
         public void actionPerformed(ActionEvent e) {
-            wallController.levelManager.nextLevel();
+            wallController.getLevelManager().nextLevel();
         }
 
     }
@@ -72,8 +72,8 @@ public class DebugConsoleController {
          */
         public void actionPerformed(ActionEvent e) {
             System.out.println("Reset Ball Count");
-            wallView.ball.resetBallCount();
-            wallView.player.resetWidth();
+            wallView.getBall().resetBallCount();
+            wallView.getPlayer().resetWidth();
         }
 
     }
@@ -107,27 +107,27 @@ public class DebugConsoleController {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource()==NightModeOn){
                 gameBoard.setBgColor(Color.BLACK);
-                wallView.ball.setInnerColor(new Color(255, 255, 224));
-                wallView.ball.setBorderColor(new Color(255, 255, 224));
-                wallView.player.setInnerColor(new Color(144, 238, 144));
-                wallView.player.setBorderColor(new Color(144, 238, 144));
-                wallView.messageColor = Color.CYAN;
-                wallView.block1.setInnerColor(Color.pink);
-                wallView.block1.setBorderColor(Color.pink);
-                wallView.block2.setInnerColor(Color.pink);
-                wallView.block2.setBorderColor(Color.pink);
+                wallView.getBall().setInnerColor(new Color(255, 255, 224));
+                wallView.getBall().setBorderColor(new Color(255, 255, 224));
+                wallView.getPlayer().setInnerColor(new Color(144, 238, 144));
+                wallView.getPlayer().setBorderColor(new Color(144, 238, 144));
+                wallView.setMessageColor(Color.CYAN);
+                wallView.getBlock1().setInnerColor(Color.pink);
+                wallView.getBlock1().setBorderColor(Color.pink);
+                wallView.getBlock2().setInnerColor(Color.pink);
+                wallView.getBlock2().setBorderColor(Color.pink);
             }
             else if(e.getSource()==NightModeOff){
                 gameBoard.setBgColor(Color.WHITE);
-                wallView.ball.setInnerColor(new Color(255, 219, 88));
-                wallView.ball.setBorderColor(new Color(255, 219, 88).darker().darker());
-                wallView.player.setInnerColor(Color.GREEN);
-                wallView.player.setBorderColor(Color.GREEN.darker().darker());
-                wallView.messageColor = Color.BLUE;
-                wallView.block1.setInnerColor(Color.red);
-                wallView.block1.setBorderColor(Color.red.darker().darker());
-                wallView.block2.setInnerColor(Color.red);
-                wallView.block2.setBorderColor(Color.red.darker().darker());
+                wallView.getBall().setInnerColor(new Color(255, 219, 88));
+                wallView.getBall().setBorderColor(new Color(255, 219, 88).darker().darker());
+                wallView.getPlayer().setInnerColor(Color.GREEN);
+                wallView.getPlayer().setBorderColor(Color.GREEN.darker().darker());
+                wallView.setMessageColor(Color.BLUE);
+                wallView.getBlock1().setInnerColor(Color.red);
+                wallView.getBlock1().setBorderColor(Color.red.darker().darker());
+                wallView.getBlock2().setInnerColor(Color.red);
+                wallView.getBlock2().setBorderColor(Color.red.darker().darker());
             }
         }
     }
@@ -142,7 +142,7 @@ public class DebugConsoleController {
          */
         @Override
         public void stateChanged(ChangeEvent e) {
-            wallView.ball.setXSpeed(theView.getBallXSpeed().getValue());
+            wallView.getBall().setXSpeed(theView.getBallXSpeed().getValue());
         }
     }
 
@@ -156,7 +156,7 @@ public class DebugConsoleController {
          */
         @Override
         public void stateChanged(ChangeEvent e) {
-            wallView.ball.setYSpeed(theView.getBallYSpeed().getValue());
+            wallView.getBall().setYSpeed(theView.getBallYSpeed().getValue());
         }
     }
 
@@ -208,7 +208,7 @@ public class DebugConsoleController {
             int y = ((gameFrame.getHeight() - theView.getHeight()) / 2) + gameFrame.getY();
             theView.setLocation(x,y);
 
-            Ball b = wallView.ball;
+            Ball b = wallView.getBall();
             theView.setValues(b.getSpeedX(),b.getSpeedY());
         }
 

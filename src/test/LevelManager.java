@@ -163,15 +163,15 @@ public class LevelManager {
      * If it is level 5 or level 6, make block1 and block2 visible and set the ball's XSpeed and YSpeed to 4
      */
     public void nextLevel(){
-        wall.bricks = levels[level++];
-        wall.brickCount.setBrickCount(wall.bricks.length);
-        wall.player.resetWidth();
+        wall.setBricks(levels[level++]);
+        wall.getBrickCount().setBrickCount(wall.getBricks().length);
+        wall.getPlayer().resetWidth();
 
         if (level == 5 || level == 6){
-            wall.block1.setVisible();
-            wall.block2.setVisible();
-            wall.ball.setXSpeed(4);
-            wall.ball.setYSpeed(-4);
+            wall.getBlock1().setVisible();
+            wall.getBlock2().setVisible();
+            wall.getBall().setXSpeed(4);
+            wall.getBall().setYSpeed(-4);
         }
 
     }

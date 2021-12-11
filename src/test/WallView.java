@@ -25,19 +25,16 @@ import java.util.Random;
  */
 public class WallView{
 
-    private Random rnd;
-    private Point startPoint;
-
-    Rectangle area;
-    Brick[] bricks;
-    Ball ball;
-    Player player;
-    BrickCount brickCount;
-    String message;
-    Color messageColor;
-    Score score;
-    Block block1;
-    Block block2;
+    private final Rectangle area;
+    private Brick[] bricks;
+    private final Ball ball;
+    private final Player player;
+    private final BrickCount brickCount;
+    private String message;
+    private Color messageColor;
+    private final Score score;
+    private final Block block1;
+    private final Block block2;
 
     /**
      * Constructor for WallView
@@ -50,10 +47,6 @@ public class WallView{
         message ="";
         messageColor = Color.BLUE;
 
-        this.startPoint = new Point(ballPos);
-
-        rnd = new Random();
-
         ball = new RubberBall(ballPos);
 
         block1 = new Block(120, 190, 80,10);
@@ -63,9 +56,126 @@ public class WallView{
 
         area = drawArea;
 
-        this.brickCount = new BrickCount(30);
+        brickCount = new BrickCount(30);
 
         score = new Score();
+    }
+
+    /**
+     * Get the area of the game screen
+     *
+     * @return Area for the game screen
+     */
+    public Rectangle getArea(){
+        return area;
+    }
+
+    /**
+     * Get a set of bricks
+     *
+     * @return A set of bricks
+     */
+    public Brick[] getBricks(){
+        return bricks;
+    }
+
+    /**
+     * Update the set of bricks
+     *
+     * @param bricks Set of brick object
+     */
+    public void setBricks(Brick[] bricks){
+        this.bricks = bricks;
+    }
+
+    /**
+     * Get the ball object
+     *
+     * @return Ball object
+     */
+    public Ball getBall(){
+        return ball;
+    }
+
+    /**
+     * Get the player object
+     *
+     * @return Player object
+     */
+    public Player getPlayer(){
+        return player;
+    }
+
+    /**
+     * Get BrickCount object
+     *
+     * @return BrickCount object
+     */
+    public BrickCount getBrickCount(){
+        return brickCount;
+    }
+
+    /**
+     * Get the message strings
+     *
+     * @return Message strings
+     */
+    public String getMessage(){
+        return message;
+    }
+
+    /**
+     * Update the message
+     *
+     * @param newMessage New message
+     */
+    public void setMessage(String newMessage){
+        message = newMessage;
+    }
+
+    /**
+     * Get the current color of the message
+     *
+     * @return Current color of the message
+     */
+    public Color getMessageColor(){
+        return messageColor;
+    }
+
+    /**
+     * Update the color of the message
+     *
+     * @param newColor New color for the message
+     */
+    public void setMessageColor(Color newColor){
+        messageColor = newColor;
+    }
+
+    /**
+     * Get the Score object
+     *
+     * @return Score object
+     */
+    public Score getScore(){
+        return score;
+    }
+
+    /**
+     * Get the Block object block1
+     *
+     * @return Block object block1
+     */
+    public Block getBlock1(){
+        return block1;
+    }
+
+    /**
+     * Get the Block object block2
+     *
+     * @return Block object block2
+     */
+    public Block getBlock2(){
+        return block2;
     }
 
 

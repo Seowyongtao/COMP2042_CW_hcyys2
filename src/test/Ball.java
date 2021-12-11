@@ -13,12 +13,11 @@ abstract public class Ball {
 
     private Shape ballFace;
 
-    private Point2D center;
-
-    Point2D up;
-    Point2D down;
-    Point2D left;
-    Point2D right;
+    private final Point2D center;
+    private final Point2D up;
+    private final Point2D down;
+    private final Point2D left;
+    private final Point2D right;
 
     private Color border;
     private Color inner;
@@ -28,7 +27,7 @@ abstract public class Ball {
 
     private boolean isLost;
     private int count;
-    private Random rnd;
+    private final Random rnd;
 
     /**
      * Constructor for Ball
@@ -310,5 +309,40 @@ abstract public class Ball {
         setCount(3);
     }
 
+    /**
+     * Get Point2D object up
+     *
+     * @return Point2D object up
+     */
+    public Point2D getUp(){
+        return up;
+    }
+
+    /**
+     * Get Point2D object down
+     *
+     * @return Point2D object down
+     */
+    public Point2D getDown(){
+        return down;
+    }
+
+    /**
+     * Get Point2D object left
+     *
+     * @return Point2D object left
+     */
+    public Point2D getLeft(){
+        return left;
+    }
+
+    /**
+     * Get Point2D object right
+     *
+     * @return Point2D object right
+     */
+    public Point2D getRight(){
+        return right;
+    }
 
 }

@@ -74,7 +74,7 @@ public class Player {
      * @return true/false
      */
     public boolean impact(Ball b) {
-        return playerFace.contains(b.getPosition()) && playerFace.contains(b.down);
+        return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown());
     }
 
     /**
