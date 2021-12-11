@@ -46,8 +46,8 @@ public class WallView{
         message ="";
         messageColor = Color.BLUE;
         ball = new RubberBall(ballPos);
-        block1 = new Block(120, 190, 80,10);
-        block2 = new Block(390, 140, 80,10);
+        block1 = new Block(120, 190, 80,5);
+        block2 = new Block(390, 140, 80,5);
         paddle = new Paddle((Point) ballPos.clone(),150,10, drawArea);
         area = drawArea;
         brickCount = new BrickCount(30);
