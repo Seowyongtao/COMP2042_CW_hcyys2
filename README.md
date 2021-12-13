@@ -4,7 +4,7 @@ Name: Seow Yong Tao\
 StudentID: 20317754
 
 Below are the high level view for my maintenance and extension activities,
-***for more details of every move, please refer to the file inside commitMessage folder***
+***for more details of every move, please refer to the file named "GitRelated"***
 
 Key Changes for refactoring activities
 ---
@@ -45,20 +45,20 @@ DebugConsoleView: Act as a container for relevant components in debug console\
 DebugConsoleController: Responsible for creating logics for the components in DebugConsoleView to perform action
 to interact with relevant data models such as Ball and Bricks
 
-WallView: Responsible for creating relevant objects like ball, player, brick for drawing purposes.
+WallView: Responsible for creating relevant objects like ball, player, brick for drawing purposes.\
 WallController: Responsible for creating logics for the relevant model objects like ball, player, bricks, brickCount
 to interact with each other and updating their states according to relevant events.
 
 Additions/Extensions
 ---
 
-###1. Add background image to home menu
+### 1. Add background image to home menu
 
 
 ![](Images/addBgImage.png)
 
 
-###2. Add info page
+### 2. Add info page
 
 
 ![](Images/clickInfo.png)
@@ -68,7 +68,7 @@ Additions/Extensions
 ![](Images/infoPage.png)
 
 
-###3. Add night mode feature
+### 3. Add night mode feature
 
 
 ![](Images/nightModeBtn.png)
@@ -77,7 +77,7 @@ Additions/Extensions
 ![](Images/afterNightMode.png)
 
 
-###4. Add rules to reward and penalize player
+### 4. Add rules to reward and penalize player
 
 
 i) If a brick is destroyed, 10 scores will be rewarded
@@ -110,7 +110,7 @@ iv) The paddle will become shorter if the ball is lost
 ![](Images/paddleShort2.png)
 
 
-###5. Add additional levels
+### 5. Add additional levels
 
 Level 5: Add 2 blocks in the wall, and set the ball’s speed to fast speed
 
@@ -127,7 +127,7 @@ Level 6: The 2 blocks in the wall will move automatically, and set the ball’s 
 ![](Images/level6_2.png)
 
 
-###6. Add permanent high score list
+### 6. Add permanent high score list
 
 High score list will be showed under 2 situtions:
 
